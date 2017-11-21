@@ -3,14 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * category
+ * group
  *
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\categoryRepository")
+ * @ORM\Table(name="group")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GroupRepository")
  */
-class category
+class Group
 {
     /**
      * @var int
@@ -29,12 +30,14 @@ class category
     private $name;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(name="tricks", type="array", nullable=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Trick", mappedBy="Group")
      */
     private $tricks;
 
+    public function __construct()
+    {
+        $this->tricks   = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -51,7 +54,7 @@ class category
      *
      * @param string $name
      *
-     * @return category
+     * @return Group
      */
     public function setName($name)
     {
@@ -75,7 +78,7 @@ class category
      *
      * @param array $tricks
      *
-     * @return category
+     * @return Group
      */
     public function setTricks($tricks)
     {
@@ -93,5 +96,28 @@ class category
     {
         return $this->tricks;
     }
-}
 
+    /**
+     * Add trick
+     *
+     * @param \AppBundle\Entity\Trick $trick
+     *
+     * @return Group
+     */
+    public function addTrick(\AppBundle\Entity\Trick $trick)
+    {
+        $this->tricks[] = $trick;
+
+        return $this;
+    }
+
+    /**
+     * Remove trick
+     *
+     * @param \AppBundle\Entity\Trick $trick
+     */
+    public function removeTrick(\AppBundle\Entity\Trick $trick)
+    {
+        $this->tricks->removeElement($trick);
+    }
+}

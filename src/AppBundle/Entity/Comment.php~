@@ -22,7 +22,9 @@ class Comment
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @var int
+     *
+     * @ORM\Column(name="author", type="smallint")
      */
     private $author;
 
@@ -154,3 +156,4 @@ class Comment
         return $this->trick;
     }
 }
+
