@@ -45,9 +45,10 @@ class Trick
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Group")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="tricks")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $group;
+    private $category;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="trick", cascade={"persist","remove"})
@@ -155,27 +156,27 @@ class Trick
     }
 
     /**
-     * Set Group
+     * Set category
      *
-     * @param string group
+     * @param string category
      *
      * @return Trick
      */
-    public function setGroup($group)
+    public function setCategory($category)
     {
-        $this->group = $group;
+        $this->category = $category;
 
         return $this;
     }
 
     /**
-     * Get group
+     * Get category
      *
      * @return string
      */
-    public function getGroup()
+    public function getCategory()
     {
-        return $this->group;
+        return $this->category;
     }
 
     /**

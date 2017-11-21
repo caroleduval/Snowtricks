@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * group
  *
- * @ORM\Table(name="group")
+ * @ORM\Table(name="t_group")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GroupRepository")
  */
 class Group
@@ -30,7 +30,7 @@ class Group
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Trick", mappedBy="Group")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Trick", mappedBy="group")
      */
     private $tricks;
 
@@ -96,5 +96,28 @@ class Group
     {
         return $this->tricks;
     }
-}
 
+    /**
+     * Add trick
+     *
+     * @param \AppBundle\Entity\Trick $trick
+     *
+     * @return Group
+     */
+    public function addTrick(\AppBundle\Entity\Trick $trick)
+    {
+        $this->tricks[] = $trick;
+
+        return $this;
+    }
+
+    /**
+     * Remove trick
+     *
+     * @param \AppBundle\Entity\Trick $trick
+     */
+    public function removeTrick(\AppBundle\Entity\Trick $trick)
+    {
+        $this->tricks->removeElement($trick);
+    }
+}
