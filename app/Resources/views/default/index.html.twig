@@ -1,17 +1,38 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
-
-    <h2>Liste des tricks</h2>
-
-    <ul>
-        {% for trick in listTricks %}
-            <li>
-                {{ trick.name }} du groupe {{ trick.category.name }}
-            </li>
-        {% else %}
-            <li>Pas (encore !) de trick</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="main">
+            <div class="row">
+                {% for trick in listTricks %}
+                    <div class="portfolio">
+                        <div class="col-lg-3 col-md-3 col-sm-6  portfolio-wrapper">
+                            <div class="label-text">
+                                <p class="text-title">{{ trick.name }}</p>
+                            </div>
+                            <img src="{{ asset('images/grab_indy_1.jpg') }}"  alt="grab indy" />
+                            <div class="label">
+                                <div class="label-text">
+                                    <ul class="f_nav">
+                                        <li><a href="modif"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                                        <li><a href="supp"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li> /
+                                        <span class="text-category">Groupe : {{ trick.category.name }}</span>
+                                    </ul>
+                                </div>
+                                <div class="label-bg"></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <p>
+                <a class="btn btn-primary btn-lg" href="add">
+                    J'ajoute un trick
+                </a>
+            </p>
+        </div>
+    </div>
 {% endblock %}
+
+
+
