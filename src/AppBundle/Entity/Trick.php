@@ -65,6 +65,8 @@ class Trick
      */
     private $comments;
 
+    private $thumbnail;
+
 
     public function __construct()
     {
@@ -321,5 +323,11 @@ class Trick
     public function removeComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments->removeElement($comment);
+    }
+
+    public function getThumbnail()
+    {
+        $thumbnail=$this->photos->first();
+        return $thumbnail;
     }
 }

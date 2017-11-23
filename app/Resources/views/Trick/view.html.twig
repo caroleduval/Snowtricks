@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="main">
+            <div class="content">
+                <!-- start details -->
+                <div class="details">
+                    <div class="title">
+                        <h1>{{ trick.name }}</h1>
+                        <h2>Groupe : {{ trick.category.name }}</h2>
+                    </div>
+                    <div class="det_text">
+                        <h3>Description</h3>
+                            <p class="para">{{ trick.description }}</p>
+                            <div class="det_pic">
+                                mon carousel génial
+                            </div>
+                    </div>
+                    <div class="read_more">
+                        <a class="btn" href="update">Modifier</a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <!-- end details -->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
