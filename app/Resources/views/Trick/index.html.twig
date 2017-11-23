@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container main">
+        <div class="row">
+            {% for trick in listTricks %}
+                <div class="col-md-3 col-xs-12 portfolio">
+                    <div class="portfolio-wrapper">
+                        {% if not trick.photos.isEmpty() %}
+                            {% set thumb = trick.getThumbnail() %}
+                            <img src="{{ asset(thumb.url) }}"  alt="thumb.alt" />
+                        {% endif %}
+                        <div class="row label-text">
+                            <div class="col-xs-6 col-xs-offset-3">
+                                <p class="text-title">{{ trick.name }}</p>
+                            </div>
+                            <div class="col-xs-3">
+                                <ul class="f_nav">
+                                    <li><a href="modif"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                                    <li><a href="supp"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-12 text-category">Groupe : {{ trick.category.name }}</div>
+                        </div>
+                        <div class="label-bg"></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <p>
+            <a class="btn btn-primary btn-lg" href="add">J'ajoute un trick</a>
+        </p>
+    </div>
+{% endblock %}
+
+
+
