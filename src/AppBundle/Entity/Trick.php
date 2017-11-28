@@ -65,9 +65,6 @@ class Trick
      */
     private $comments;
 
-    private $thumbnail;
-
-
     public function __construct()
     {
         $this->photos   = new ArrayCollection();
@@ -263,6 +260,7 @@ class Trick
     public function addPhoto(\AppBundle\Entity\Photo $photo)
     {
         $this->photos[] = $photo;
+        $photo->setTrick($this);
 
         return $this;
     }
@@ -287,6 +285,7 @@ class Trick
     public function addVideo(\AppBundle\Entity\Video $video)
     {
         $this->videos[] = $video;
+        $video->setTrick($this);
 
         return $this;
     }

@@ -6,21 +6,20 @@
 
     <title>{% block title %}SnowTricks{% endblock %}</title>
     <script src="https://use.fontawesome.com/e0a1d229f0.js"></script>
+    <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
 
 
-    {% block stylesheets %}
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
-    {% endblock %}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 {#    {% block javascripts %}
     <!--  jquery plguin -->
-    #}{#<script type="text/javascript" src="js/jquery.min.js"></script>#}{#
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <!-- start gallery -->
-    #}{#<script type="text/javascript" src="js/jquery.easing.min.js"></script>#}{#
         <script type="text/javascript" src="{{ asset('js/jquery.easing.min.js') }}"></script>
-    #}{#<script type="text/javascript" src="js/jquery.mixitup.min.js"></script>#}{#
         <script type="text/javascript" src="{{ asset('js/jquery.mixitup.min.js') }}"></script>
     <script type="text/javascript">
         $(function () {
@@ -66,9 +65,7 @@
         });
     </script>
     <!-- Add fancyBox main JS and CSS files -->
-    #}{#<link href="css/magnific-popup.css" rel="stylesheet" type="text/css">#}{#
         <link href="{{ asset('css/magnific-popup.css') }}" rel="stylesheet" />
-    #}{#<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>#}{#
         <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
     <script>
         $(document).ready(function() {

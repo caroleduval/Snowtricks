@@ -38,3 +38,8 @@ services:
         class: Twig_Extension_Debug
         tags:
             - { name: 'twig.extension' }
+
+    AppBundle.Video.Recorder:
+        class: AppBundle\VideoRecorder
+
+
