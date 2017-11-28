@@ -1,20 +1,28 @@
-{#
-{% form_theme form _self %}
 
-{% block appbundle_trick_photos_entry %}
-    <div class="row">
-        <div class="col-md-6">
-            {{ form_widget(form.file) }}
+
+{#{% block _trickbundle_trick_images_entry_row %}
+
+<div class="form-group rowImg">
+    <div class="col-xs-12">
+        {% if form.imageFile.parent.vars.value is not null %}
+        <div style="display:none;">
+            {{ form_widget(form.imageFile) }}
         </div>
-        <div class="col-md-6">
-            <button>Supp</button>
-        </div>
-    </div>
-{% endblock %}
+        <img src="{{ asset('img/tricks/' ~ form.imageFile.parent.vars.value.imageName) }}" class="img-responsive center-block imgPreview">
+        {% else %}
+        {{ form_widget(form.imageFile) }}
+        {% endif %}
+
+</div>
+<div class="col-xs-12">
+    {{ form_errors(form.imageFile) }}
+</div>
+</div>
+
+{% endblock %}#}
 
 
-#}
-
+{#{{ dump(form.photoType.parent.vars.value ) }}#}
 
 
 <div class="container">
@@ -56,26 +64,27 @@
                         {{ form_errors(form.category) }}
                     </div>
                 </div>
+
+
                 {# Photo form #}
                 <div class="form-group">
                     {{ form_label(form.photos, 'Photos', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            {{ form_widget(form.photos) }}
-                        </div>
+                    <div class="col-md-9">
+                        {{ form_widget(form.photos) }}
                     </div>
                 </div>
                 <a href="#" id="add_photo" class="btn btn-default">Ajouter une photo</a>
+
                 {# Videos form #}
                 <div class="form-group">
                     {{ form_label(form.videos, 'Vidéos', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            {{ form_widget(form.videos) }}
-                        </div>
+                    <div class="col-md-9">
+                        {{ form_widget(form.videos) }}
                     </div>
                 </div>
                 <a href="#" id="add_video" class="btn btn-default">Ajouter une video</a>
+
+
                 <div class="form-group">
                     <div class="col-md-9 col-md-offset-3 text-right">
                         <button class="btn btn-primary" type="submit">Enregistrer</button>
