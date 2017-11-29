@@ -28,10 +28,9 @@ class Photo
      * @var UploadedFile
      */
     private $file;
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="photos")
-     * @ORM\JoinColumn(nullable=false)
-     */
+        /**
+         * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="photos")
+         */
     private $trick;
 
     // On ajoute cet attribut pour y stocker le nom du fichier temporairement

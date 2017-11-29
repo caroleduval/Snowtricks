@@ -8,8 +8,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
+
+
+
+/**
+ * Class TrickController
+ * @package AppBundle\Controller
+ */
 class TrickController extends Controller
 {
     /**
@@ -35,6 +44,7 @@ class TrickController extends Controller
     }
     /**
      * @Route("/ajouter_un_trick", name="trick_add")
+     * @Security("has_role('ROLE_AUTEUR')")
      */
     public function addAction(Request $request, EntityManagerInterface $em)
     {
@@ -61,6 +71,7 @@ class TrickController extends Controller
     }
     /**
      * @Route("/modifier_un_trick/{id}", name="trick_edit", requirements={"id" = "\d+"})
+     * @Security("has_role('ROLE_AUTEUR')")
      */
     public function editAction(Request $request, EntityManagerInterface $em, Trick $trick)
     {
@@ -81,6 +92,7 @@ class TrickController extends Controller
     }
     /**
      * @Route("/supprimer_un_trick/{id}", name="trick_delete", requirements={"id" = "\d+"})
+     * @Security("has_role('ROLE_AUTEUR')")
      */
     public function deleteAction(Request $request, EntityManagerInterface $em, Trick $trick)
     {

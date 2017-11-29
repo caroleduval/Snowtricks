@@ -87,32 +87,35 @@
 
 
 <!-- start header -->
+<div class="container-fluid">
 <div class="header_bg">
     <div class="wrap">
         <div class="header">
-            <div class="h_right hidden-xs">
+            <div class="row">
+                <div class="col-xs-4 col-sm-offset-9 col-sm-3">
                 <ul class="menu">
-                    <li><i class="fa fa-home fa-2x" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></li>
+                    <li><a href="{{ path('homepage') }}"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></a></li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></a></li>
+                    {% endif %}
                 </ul>
+                </div>
                 <div class="clear"></div>
-                <p class="welcome">Hello Prénom_user ! </p>
-            </div>
-            <div class="h_bg_left hidden-lg hidden-md hidden-sm">
-                <ul class="menu">
-                    <li><i class="fa fa-home fa-2x" aria-hidden="true"></i></li>
-                    <li><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></li>
-                    <li><p class="welcome">Hello Prénom_user ! </p></li>
-                </ul>
-
-                <div class="clear"></div>
-            </div>
+                <div class="col-xs-4 col-sm-offset-9 col-sm-3">
+                <p class="welcome text-center h4">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    Hello {{ app.user.username|upper }} !
+                {% endif %}
+                </p>
+                </div>
         </div>
         <div class="clear"></div>
-    </div>
+    </div></div>
     <div class="header_btm">
         <div class="h_left">
-            <h2>Bienvenue sur le site SnowTricks.</h2>
+            <h2>Bienvenue sur SnowTricks.</h2>
             <h3 class="hidden-xs">Site communautaire des amateurs de snowboard.</h3>
         </div>
         <div class="clear"></div>
@@ -170,6 +173,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Trick
@@ -41,13 +42,15 @@ class Trick
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank()
      */
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Group")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="tricks")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $group;
+    private $category;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="trick", cascade={"persist","remove"})
@@ -60,10 +63,9 @@ class Trick
     private $videos;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick")
      */
     private $comments;
-
 
     public function __construct()
     {
@@ -155,27 +157,27 @@ class Trick
     }
 
     /**
-     * Set Group
+     * Set category
      *
-     * @param string group
+     * @param string category
      *
      * @return Trick
      */
-    public function setGroup($group)
+    public function setCategory($category)
     {
-        $this->group = $group;
+        $this->category = $category;
 
         return $this;
     }
 
     /**
-     * Get group
+     * Get category
      *
      * @return string
      */
-    public function getGroup()
+    public function getCategory()
     {
-        return $this->group;
+        return $this->category;
     }
 
     /**
@@ -260,6 +262,7 @@ class Trick
     public function addPhoto(\AppBundle\Entity\Photo $photo)
     {
         $this->photos[] = $photo;
+        $photo->setTrick($this);
 
         return $this;
     }
@@ -284,6 +287,7 @@ class Trick
     public function addVideo(\AppBundle\Entity\Video $video)
     {
         $this->videos[] = $video;
+        $video->setTrick($this);
 
         return $this;
     }
@@ -320,5 +324,11 @@ class Trick
     public function removeComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments->removeElement($comment);
+    }
+
+    public function getThumbnail()
+    {
+        $thumbnail=$this->photos->first();
+        return $thumbnail;
     }
 }

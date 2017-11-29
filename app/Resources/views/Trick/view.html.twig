@@ -80,9 +80,13 @@
                 </div>
             </div>
             <!-- end details -->
-        </div>
-    </div>
+            Commentaires
+            <div id="commentsWrap">
+                {{ render(path('comments_list', {'trick_id': trick.id, 'page': 1})) }}
+            </div>
+
 {% endblock %}
+
 
 
 

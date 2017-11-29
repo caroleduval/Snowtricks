@@ -71,9 +71,8 @@ body {
 }
 .menu li p{
 	padding-top : 25px;
-
 }
-.menu li.active a,.menu li a:hover{
+.menu li.active a{
 	background: #07087d;
 	color: #fff;
 	text-shadow: 0 1px 0 black;
@@ -96,6 +95,11 @@ body {
 }
 i.fa {
 	color : #07087d;
+	vertical-align: baseline;
+	padding-top: .4em;
+}
+i.fa:hover {
+	color : red;
 	vertical-align: baseline;
 	padding-top: .4em;
 }
@@ -1547,7 +1551,7 @@ span.tab-img{
 	);
 	}
 	.welcome{
-		float : right;
+		float : inherit;
 	}
 	.wrap{
 		width:95%;
@@ -1680,7 +1684,7 @@ span.tab-img{
 	);
 	}
 	.welcome{
-		float : right;
+		float : inherit;
 	}
 	.wrap{
 		width:95%;

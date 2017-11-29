@@ -1,0 +1,12 @@
+{% for comment in listComments %}
+    <div class="row">
+        <div class="col-md-1">
+            <img src="{{ asset(comment.author.photo.webPath) }}" alt="{{ comment.author.firstName }}" />
+        </div>
+        <div class="col-md-11">
+            Le {{ comment.dateCrea|date("d-m-Y à H:i:s") }},
+            {{ comment.author.firstName }} {{ comment.author.name }} a dit :
+            <p>{{ comment.content|nl2br }}</p>
+        </div>
+    </div>
+{% endfor %}
