@@ -61,10 +61,9 @@ class Trick
     private $videos;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick")
      */
     private $comments;
-
 
     public function __construct()
     {
@@ -261,6 +260,7 @@ class Trick
     public function addPhoto(\AppBundle\Entity\Photo $photo)
     {
         $this->photos[] = $photo;
+        $photo->setTrick($this);
 
         return $this;
     }
@@ -285,6 +285,7 @@ class Trick
     public function addVideo(\AppBundle\Entity\Video $video)
     {
         $this->videos[] = $video;
+        $video->setTrick($this);
 
         return $this;
     }
@@ -321,5 +322,11 @@ class Trick
     public function removeComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments->removeElement($comment);
+    }
+
+    public function getThumbnail()
+    {
+        $thumbnail=$this->photos->first();
+        return $thumbnail;
     }
 }
