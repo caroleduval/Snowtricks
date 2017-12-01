@@ -67,6 +67,14 @@ class Trick
      */
     private $comments;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $lastUpdate;
+
     public function __construct()
     {
         $this->photos   = new ArrayCollection();
@@ -326,9 +334,29 @@ class Trick
         $this->comments->removeElement($comment);
     }
 
+    public function setLastUpdate($lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+
+        return $this;
+    }
+
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
+    }
+    
     public function getThumbnail()
     {
         $thumbnail=$this->photos->first();
         return $thumbnail;
+    }
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+    {
+        $this->setLastUpdate(new \Datetime());
     }
 }

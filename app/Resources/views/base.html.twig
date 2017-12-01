@@ -89,10 +89,9 @@
 <!-- start header -->
 <div class="container-fluid">
 <div class="header_bg">
-    <div class="wrap">
-        <div class="header">
+    <div class="header">
             <div class="row">
-                <div class="col-xs-4 col-sm-offset-9 col-sm-3">
+                <div class="pull-right col-xs-3">
                 <ul class="menu">
                     <li><a href="{{ path('homepage') }}"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -103,7 +102,7 @@
                 </ul>
                 </div>
                 <div class="clear"></div>
-                <div class="col-xs-4 col-sm-offset-9 col-sm-3">
+                <div class="pull-right  col-xs-3">
                 <p class="welcome text-center h4">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     Hello {{ app.user.username|upper }} !
@@ -112,7 +111,7 @@
                 </div>
         </div>
         <div class="clear"></div>
-    </div></div>
+    </div>
     <div class="header_btm">
         <div class="h_left">
             <h2>Bienvenue sur SnowTricks.</h2>
@@ -127,47 +126,28 @@
 </div>
 
 <div class="footer_bg">
-    <div class="wrap">
-        <div class="footer">
-            <div class="span_of_4">
-                <div class="span1_of_4">
-                    <h4>A propos de ce site</h4>
-                    <p>Ce site a été réalisé dans le cadre d'une formation. Tout son contenu est fictif.</p>
-                    <div class="f_icons">
-                        <ul>
-                            <li><a class="icon2" href="#"></a></li>
-                            <li><a class="icon1" href="#"></a></li>
-                            <li><a class="icon3" href="#"></a></li>
-                            <li><a class="icon4" href="#"></a></li>
-                            <li><a class="icon5" href="#"></a></li>
-                        </ul>
-                    </div>
+    <div class="footer">
+        <div class="span_of_4">
+            <div class="span1_of_4">
+                <h4>A propos de ce site</h4>
+                <p>Ce site a été réalisé dans le cadre d'une formation.<br> Tout son contenu est fictif.</p>
+                <h4>A propos de moi</h4>
+                <span>Retrouvez moi sur les réseaux sociaux :</span>
+                <div class="f_icons">
+                    <ul>
+                        <li><a href="https://github.com/caroleduval"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
+                        <li><a href="https://openclassrooms.facebook.com/profile.php?id=100016853288099"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
+                        <li><a href="https://linkedin.com/in/carole-duvall"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a></li>
+                    </ul>
                 </div>
+            </div>
                 <div class="span1_of_4">
-                    <h4>Dernières figures ajoutées</h4>
-                    <span>Fusce scelerisque massa vitae</span>
-                    <p>25 april 2013</p>
-                    <span>Pellentesque bibendum ante</span>
-                    <p>15 march 2013</p>
-                    <span>Maecenas quis ipsum sed magna </span>
-                    <p>25 april 2013</p>
+                    <h4>Dernières contributions</h4>
+                    {{ render(controller('AppBundle:Trick:list', {'limit': 3})) }}
                 </div>
                 <div class="span1_of_4">
                     <h4>Derniers commentaires</h4>
-                    <span class="bg">It is a long established fact that a reader will looking layout.</span>
-                    <span class="bg top">There are many variations of passages of Lorem Ipsum available words.</span>
-                    <span class="bg">It is a long established fact that a reader will looking layout.</span>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="footer_top">
-                <div class="f_nav1">
-                    <ul>
-                        <li><a href="index.html">home</a></li>
-                    </ul>
-                </div>
-                <div class="copy">
-                    <p class="link"><span>© All rights reserved | Template by&nbsp;<a href="http://w3layouts.com/"> W3Layouts</a></span></p>
+                    {{ render(controller('AppBundle:Comment:list', {'limit': 3})) }}
                 </div>
                 <div class="clear"></div>
             </div>

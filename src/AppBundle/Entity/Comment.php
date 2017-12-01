@@ -45,7 +45,10 @@ class Comment
      */
     private $trick;
 
-
+    public function __construct()
+    {
+        $this->dateCrea         = new \Datetime();
+    }
     /**
      * Get id
      *
