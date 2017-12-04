@@ -31,6 +31,10 @@ img{max-width:100%;}
 .container-fluid{
 	padding :0px;
 }
+.container{
+	padding-top: 20px;
+}
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	background:#fff;
@@ -88,6 +92,12 @@ body {
 .carousel-inner > .item > .video {
 	margin: 0 auto;
 }
+.comment{
+	background-color: #5eb5e0;
+	border : #07087d 1px solid;
+	padding : 2px;
+	margin : 2px;
+}
 .logo{
 	float: left;
 }
@@ -143,7 +153,7 @@ i.fa {
 	padding-left: 2px;
 }
 i.fa:hover {
-	color : red;
+	color : #02B3E9;
 	vertical-align: baseline;
 	padding-top: .4em;
 }
@@ -405,6 +415,7 @@ i.fa:hover {
 	padding: 12px 30px;
 	font-size: 0.8925em;
 	color: #fff;
+	border : none;
 	background: #07087d;
 	text-transform: capitalize;
 	border-radius: 2px;
@@ -464,6 +475,7 @@ i.fa:hover {
 	position: relative !important;
 	cursor:pointer;
 	text-align: center;
+	border : #3f3f3f 1px solid;
 }
 #portfoliolist a img{
 	display: block;
@@ -1004,7 +1016,7 @@ p.para{
 }
 /* start pagination */
 .pagination {
-	float: left;
+	float: right;
 	top: -50px;
 	position: relative;
 	clear: both;

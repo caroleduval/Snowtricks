@@ -2,6 +2,16 @@
 
 {% block body %}
     <div class="container main">
+        <div>
+            <h2>Bienvenue sur SnowTricks, le site des amateurs de snowboard, par les amateurs de snowboard.</h2>
+            <p>Vous voulez des informations sur les tricks, ces figures acrobatiques réalisées par les freestylers du snowboard ?
+                La liste ci-dessous est pour vous ! Chaque trick a sa page avec les informations et les photos et videos qui vous permettront de mieux le maitriser.</p>
+
+            <p>Vous vous y connaissez en trick et vous voulez ajouter des tricks et/ou les compléter.
+            Vous voulez échanger avec d'autres amateurs de snowboard.
+                Inscrivez-vous !</p>
+
+        </div>
         <div class="row">
             {% for trick in listTricks %}
                 <div class="col-xs-12 col-sm-6 col-md-3 portfolio">
@@ -34,7 +44,7 @@
             {% endfor %}
         </div>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <p>
+        <p class=" pull-right">
             <a class="btn btn-primary btn-lg" href="{{ path('trick_add') }}">J'ajoute un trick</a>
         </p>
         {% endif %}

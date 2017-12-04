@@ -13,7 +13,7 @@
                 <div>
                     <div class="det_text">
                         <h3>Description</h3>
-                        <p class="para">{{ trick.description }}</p>
+                        <p class="para">{{ trick.description|nl2br }}</p>
                     </div>
                 </div>
                 <div>
@@ -51,22 +51,30 @@
                         </div>
                     </div>
                 </div>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div class="read_more">
+                        <a class="btn" href="{{ path('trick_edit', {'id': trick.id} ) }}">Modifier</a>
+                        <a class="btn" href="{{ path('trick_delete', {'id': trick.id} ) }}">Supprimer</a>
+                    </div>
+                {% endif %}
+                <div class="clear"></div>
             </div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <div class="read_more">
-                    <a class="btn" href="{{ path('trick_edit', {'id': trick.id} ) }}">Modifier</a>
-                    <a class="btn" href="{{ path('trick_delete', {'id': trick.id} ) }}">Supprimer</a>
-                </div>
-            {% endif %}
-            <div class="clear"></div>
         </div>
-    </div>
+        <div class="content">
+            <div class="details">
+                <div class="det_text">
+                    <h3>Commentaires</h3>
+                </div>
+                <div id="comments">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {{ render(controller('AppBundle:Comment:add', { 'request': app.request, 'trick_id': trick.id })) }}
+                    {% endif %}
+                    {{ render(path('comments_list', {'trick_id': trick.id, 'page': 1})) }}
+                </div>
+            </div>
+        </div>
     <!-- end details -->
-    Commentaires
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        {{ render(controller('AppBundle:Comment:add', { 'request': app.request, 'trick_id': trick.id })) }}
-    {% endif %}
-    {{ render(path('comments_list', {'trick_id': trick.id, 'page': 1})) }}
+    </div>
 </div>
 {% endblock %}
 

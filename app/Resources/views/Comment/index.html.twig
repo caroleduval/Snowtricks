@@ -1,6 +1,6 @@
 {% for comment in listComments %}
-    <div class="row">
-        <div class="col-xs-2">
+    <div class="row comment">
+        <div class="col-xs-1">
             <img src="{{ asset(comment.author.photo.webPath) }}" alt="{{ comment.author.firstName }}" />
         </div>
         <div class="col-xs-10">
@@ -12,6 +12,7 @@
 {% else %}
     <p class="text-center">Pas encore de commentaires.</p>
 {% endfor %}
+<div>
     <ul class="pagination">
         {% for p in range(1, nbPages) %}
             <li{% if p == page %} class="active"{% endif %}>
@@ -19,3 +20,4 @@
             </li>
         {% endfor %}
     </ul>
+</div>

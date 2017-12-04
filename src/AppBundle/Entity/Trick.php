@@ -201,7 +201,20 @@ class Trick
 
         return $this;
     }
+    /**
+     * Add photo
+     *
+     * @param \AppBundle\Entity\Photo $photo
+     *
+     * @return Trick
+     */
+    public function addPhoto(\AppBundle\Entity\Photo $photo)
+    {
+        $this->photos[] = $photo;
+        $photo->setTrick($this);
 
+        return $this;
+    }
     /**
      * Get photos
      *
@@ -260,20 +273,6 @@ class Trick
         return $this->comments;
     }
 
-    /**
-     * Add photo
-     *
-     * @param \AppBundle\Entity\Photo $photo
-     *
-     * @return Trick
-     */
-    public function addPhoto(\AppBundle\Entity\Photo $photo)
-    {
-        $this->photos[] = $photo;
-        $photo->setTrick($this);
-
-        return $this;
-    }
 
     /**
      * Remove photo

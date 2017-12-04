@@ -1,29 +1,21 @@
-
-
-{#{% block _trickbundle_trick_images_entry_row %}
-
-<div class="form-group rowImg">
-    <div class="col-xs-12">
-        {% if form.imageFile.parent.vars.value is not null %}
-        <div style="display:none;">
-            {{ form_widget(form.imageFile) }}
+{% form_theme form _self %}
+{% block _appbundle_trick_photos_entry_row %}
+    <div class="form-group">
+        <div class="col-xs-1">
+            {% if form.vars.value is not null %}
+                <div style="display: none;">
+                    {{ form_widget(form) }}
+                </div>
+                <img src="{{ asset(form.vars.value.webPath) }}">
+            {% else %}
+                {{ form_widget(form) }}
+            {% endif %}
         </div>
-        <img src="{{ asset('img/tricks/' ~ form.imageFile.parent.vars.value.imageName) }}" class="img-responsive center-block imgPreview">
-        {% else %}
-        {{ form_widget(form.imageFile) }}
-        {% endif %}
-
-</div>
-<div class="col-xs-12">
-    {{ form_errors(form.imageFile) }}
-</div>
-</div>
-
-{% endblock %}#}
-
-
-{#{{ dump(form.photoType.parent.vars.value ) }}#}
-
+        <div class="col-xs-12">
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock %}
 
 <div class="container">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -65,15 +57,15 @@
                     </div>
                 </div>
 
-
                 {# Photo form #}
                 <div class="form-group">
-                    {{ form_label(form.photos, 'Photos', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
-                    <div class="col-md-9">
+                    {{ form_label(form.photos, 'Photos', {'label_attr': { 'class': 'col-md-3 control-label'}})}}
+                    <div class="col-md-6">
                         {{ form_widget(form.photos) }}
                     </div>
+                    <a href="#" id="add_photo" class="btn btn-default">Ajouter une photo</a>
                 </div>
-                <a href="#" id="add_photo" class="btn btn-default">Ajouter une photo</a>
+
 
                 {# Videos form #}
                 <div class="form-group">
