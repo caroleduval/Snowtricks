@@ -41,13 +41,14 @@ class Comment
     private $content;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="trick", type="smallint")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="comments")
      */
     private $trick;
 
-
+    public function __construct()
+    {
+        $this->dateCrea         = new \Datetime();
+    }
     /**
      * Get id
      *

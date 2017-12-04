@@ -22,9 +22,7 @@ class Comment
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="author", type="smallint")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      */
     private $author;
 
@@ -43,9 +41,7 @@ class Comment
     private $content;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="trick", type="smallint")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="comments")
      */
     private $trick;
 
@@ -156,4 +152,3 @@ class Comment
         return $this->trick;
     }
 }
-

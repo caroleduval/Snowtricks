@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Trick
@@ -41,6 +42,7 @@ class Trick
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -64,6 +66,14 @@ class Trick
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick")
      */
     private $comments;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $lastUpdate;
 
     public function __construct()
     {
@@ -324,9 +334,29 @@ class Trick
         $this->comments->removeElement($comment);
     }
 
+    public function setLastUpdate($lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+
+        return $this;
+    }
+
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
+    }
+    
     public function getThumbnail()
     {
         $thumbnail=$this->photos->first();
         return $thumbnail;
+    }
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updateDate()
+    {
+        $this->setLastUpdate(new \Datetime());
     }
 }
