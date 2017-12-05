@@ -12,9 +12,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\Common\Collections\ArrayCollection;
 
-
-
-
 /**
  * Class TrickController
  * @package AppBundle\Controller
@@ -78,6 +75,7 @@ class TrickController extends Controller
         if (null === $trick) {
             throw new NotFoundHttpException("Le trick demandé n'existe pas.");
         }
+
         $listPhotos = new ArrayCollection();
         foreach ($trick->getPhotos() as $photo) {
             $listPhotos->add($photo);
@@ -96,6 +94,7 @@ class TrickController extends Controller
                     $em->remove($photo);
                 }
             }
+
             foreach ($listVideos as $video) {
                 if (false === $trick->getVideos()->contains($video)) {
                     $em->remove($video);

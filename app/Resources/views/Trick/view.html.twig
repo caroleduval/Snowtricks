@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container">
-    <div class="main">
+
         <div class="content">
             <!-- start details -->
             <div class="details">
@@ -69,13 +68,12 @@
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         {{ render(controller('AppBundle:Comment:add', { 'request': app.request, 'trick_id': trick.id })) }}
                     {% endif %}
-                    {{ render(path('comments_list', {'trick_id': trick.id, 'page': 1})) }}
+                    {{ render(controller('AppBundle:Comment:index', {'request': app.request,'trick_id': trick.id})) }}
                 </div>
             </div>
         </div>
     <!-- end details -->
-    </div>
-</div>
+
 {% endblock %}
 
 

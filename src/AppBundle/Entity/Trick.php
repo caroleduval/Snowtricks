@@ -197,10 +197,13 @@ class Trick
      */
     public function setPhotos($photos)
     {
-        $this->photos = $photos;
+        foreach ($photos as $photo) {
+            $this->addPhoto($photo);
+        }
 
         return $this;
     }
+
     /**
      * Add photo
      *
@@ -210,11 +213,13 @@ class Trick
      */
     public function addPhoto(\AppBundle\Entity\Photo $photo)
     {
-        $this->photos[] = $photo;
+        // L'ordre de ces deux lignes est important !
         $photo->setTrick($this);
+        $this->trick[] = $photo;
 
         return $this;
     }
+
     /**
      * Get photos
      *
@@ -234,7 +239,9 @@ class Trick
      */
     public function setVideos($videos)
     {
-        $this->videos = $videos;
+        foreach ($videos as $video) {
+            $this->addVideo($video);
+        }
 
         return $this;
     }
@@ -293,8 +300,9 @@ class Trick
      */
     public function addVideo(\AppBundle\Entity\Video $video)
     {
-        $this->videos[] = $video;
+        // L'ordre de ces deux lignes est important !
         $video->setTrick($this);
+        $this->trick[] = $video;
 
         return $this;
     }

@@ -3,12 +3,12 @@
 {% form_theme form _self %}
 {% block _appbundle_trick_photos_entry_row %}
     <div class="form-group">
-        <div class="col-xs-4">
+        <div class="col-xs-6">
             {% if form.vars.value is not null %}
                 <div style="display: none;">
                     {{ form_widget(form) }}
                 </div>
-                <img src="{{ asset(form.vars.value.webPath) }}" class="img-responsive">
+                <img src="{{ asset(form.vars.value.webPath) }}">
             {% else %}
                 {{ form_widget(form) }}
             {% endif %}
@@ -21,12 +21,12 @@
 
 {% block _appbundle_trick_videos_entry_row %}
     <div class="form-group">
-        <div class="col-xs-4">
+        <div class="col-xs-6">
             {% if form.vars.value is not null %}
                 <div style="display: none;">
                     {{ form_widget(form) }}
                 </div>
-                <img src="{{ asset(form.vars.value.image) }}" class="img-responsive">
+                <img src="{{ asset(form.vars.value.image) }}">
             {% else %}
                 {{ form_widget(form) }}
             {% endif %}
@@ -38,8 +38,8 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <div class="content">
+        {#<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">#}
             <div class="well">
                 {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-horizontal'}}) }}
                 {{ form_errors(form) }}
@@ -52,7 +52,7 @@
 
                     {# name #}
                     <div class="form-group">
-                        {{ form_label(form.name, 'Nom', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                        {{ form_label(form.name, 'Nom', {'label_attr': {'class': 'col-md-2 control-label'}}) }}
                         <div class="col-md-9">
                             {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
                         </div>
@@ -63,7 +63,7 @@
 
                     {# description #}
                     <div class="form-group">
-                        {{ form_label(form.description, 'Description', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                        {{ form_label(form.description, 'Description', {'label_attr': {'class': 'col-md-2 control-label'}}) }}
                         <div class="col-md-9">
                             {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '5', 'placeholder': 'Description'}}) }}
                         </div>
@@ -74,7 +74,7 @@
 
                     {# category #}
                     <div class="form-group">
-                        {{ form_label(form.category, 'Catégorie', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                        {{ form_label(form.category, 'Catégorie', {'label_attr': {'class': 'col-md-2 control-label'}}) }}
                         <div class="col-md-9">
                             {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
                         </div>
@@ -85,7 +85,7 @@
 
                     {# Photos #}
                     <div class="form-group">
-                        {{ form_label(form.photos, 'Photos', {'label_attr': { 'class': 'col-md-3 control-label'}})}}
+                        {{ form_label(form.photos, 'Photos', {'label_attr': { 'class': 'col-md-2 control-label'}})}}
                         <div class="col-md-9">
                             {{ form_widget(form.photos) }}
                         </div>
@@ -96,7 +96,7 @@
 
                     {# Videos #}
                     <div class="form-group">
-                        {{ form_label(form.videos, 'Vidéos', {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                        {{ form_label(form.videos, 'Vidéos', {'label_attr': {'class': 'col-md-2 control-label'}}) }}
                         <div class="col-md-9">
                             {{ form_widget(form.videos) }}
                         </div>
@@ -105,10 +105,9 @@
                         </div>
                     </div>
 
-
-
                     <div class="form-group">
                         <div class="col-md-9 col-md-offset-3 text-right">
+                            <a class="btn btn-default" href="{{ path('homepage') }}">Annuler</a>
                             <button class="btn btn-primary" type="submit">Enregistrer</button>
                         </div>
                     </div>

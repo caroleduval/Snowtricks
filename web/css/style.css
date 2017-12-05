@@ -28,6 +28,10 @@ nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
+legend{
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
 .container-fluid{
 	padding :0px;
 }
@@ -39,6 +43,15 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	background:#fff;
 	font-size: 100%;
+}
+.content h2{
+	font-size: 1.2em;
+	color:#07087d;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+.content p{
+	margin-bottom: 10px;
 }
 .thumbnail{
 
@@ -73,6 +86,15 @@ body {
 .last {
 	list-style: disc;
 }
+.last h4{
+	font-size: 1.1em;
+	color: #07087d;
+	font-weight: 600;
+	margin-bottom: 2%;
+}
+.last p{
+	margin-bottom: 3%;
+}
 .last li {
 	padding-bottom: 10px;
 }
@@ -91,6 +113,11 @@ body {
 }
 .carousel-inner > .item > .video {
 	margin: 0 auto;
+}
+.form-group img{
+	max-width:100px;
+	max-height: 100px;
+	overflow: hidden;
 }
 .comment{
 	background-color: #5eb5e0;
@@ -313,13 +340,13 @@ i.fa:hover {
 	float: left;
 }
 .h_left h2{
-	font-size: 1.5em;
+	font-size: 1.8em;
 	color: #07087d;
-	font-weight: 400;
+	font-weight: 800;
 }
 .h_left h3{
 	margin-top: 10px;
-	font-size: 0.8725em;
+	font-size: 1.2em;
 	color: #07087d;
 }
 /* start soc_icons */
@@ -396,14 +423,19 @@ i.fa:hover {
 }
 /*start main */
 .main_bg{
+	padding-top: 20px;
 	background: #34495E;
 }
 .main{
 	padding: 4%;
 }
+.low{
+	padding: 2% 4% 2% 4%;
+}
 .content{
 	background: #fff;
 	padding: 4%;
+	margin-bottom: 15px;
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -1618,9 +1650,6 @@ span.tab-img{
 		float: none;
 		display: inline-block;
 		margin-left: 5px;
-	}
-	.content {
-		margin-top: -70px;
 	}
 	.span1_of_4 {
 		float: none;
