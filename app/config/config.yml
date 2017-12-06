@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    photos_directory: '%kernel.project_dir%/web/upload/photos'
 
 framework:
     #esi: ~
@@ -84,14 +85,22 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+parameters:
+    fos_user.template.engine: 'twig'
+    # Permet de définir quel service de mail utiliser
+    # On utilise twig_swift pour pouvoir envoyer un email en HTML
+    service:
+        mailer: fos_user.mailer.twig_swift
+        confirmation:
+            from_email:
+                address:
+                sender_name:
+            enabled:    true
+            template:   FOSUserBundle:Registration:email.txt.twig
 
-vich_uploader:
-    db_driver: orm
-    mappings:
-        photos:
-            uri_prefix: /photos
-            upload_destination: '%kernel.root_dir%/../web/uploads/photos'
-            namer:              vich_uploader.namer_uniqid
-            inject_on_load:     false
-            delete_on_update:   true
-            delete_on_remove:   true
+twig:
+    form_themes:
+        - 'bootstrap_3_layout.html.twig'

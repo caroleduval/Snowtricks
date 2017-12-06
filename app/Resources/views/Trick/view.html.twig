@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% set count=trick.photos|length + trick.videos|length %}
 <div class="container">
     <div class="main">
         <div class="content">
@@ -15,9 +16,20 @@
                         <h3>Description</h3>
                         <p class="para">{{ trick.description|nl2br }}</p>
                     </div>
+                    <div class="det_text">
+                        <h3>Bibliothèque multimédia</h3>
+                        {% if count > 0 %}
+                        <p class="para">Ce trick est illustré par
+                            {% if trick.photos|length == 1 %} 1 photo {% else %} {{ trick.photos|length }} photos {% endif %}
+                        et {% if trick.videos|length == 1 %} 1 vidéo {% else %} {{ trick.videos|length }} vidéos{% endif %}.</p>
+                        {% else %}
+                            <p class="para">Pas encore de contenu multimédia pour ce trick.</p>
+                        {% endif %}
+                    </div>
                 </div>
+
                 <div>
-                    {% set count=trick.photos|length + trick.videos|length %}
+                    {% if count >0 %}
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
@@ -29,7 +41,7 @@
                         <div class="carousel-inner">
                             {% for photo in trick.photos %}
                                 <div class="item {%if loop.index == 1%} active {%endif%}">
-                                    <img src="{{ asset(photo.webPath) }}" alt="{{ photo.alt }}"/>
+                                    <img src="{{ asset(photo.webPath) }}" alt="{{ trick.name }}"/>
                                 </div>
                             {% endfor %}
                             {% for video in trick.videos %}
@@ -49,12 +61,14 @@
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
+                        {% endif %}
+
                     </div>
                 </div>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <div class="read_more">
-                        <a class="btn" href="{{ path('trick_edit', {'id': trick.id} ) }}">Modifier</a>
-                        <a class="btn" href="{{ path('trick_delete', {'id': trick.id} ) }}">Supprimer</a>
+                        <a class="btn" href="{{ path('trick_edit', {'slug': trick.slug} ) }}">Modifier</a>
+                        <a class="btn" href="{{ path('trick_delete', {'slug': trick.slug} ) }}">Supprimer</a>
                     </div>
                 {% endif %}
                 <div class="clear"></div>
@@ -69,7 +83,7 @@
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         {{ render(controller('AppBundle:Comment:add', { 'request': app.request, 'trick_id': trick.id })) }}
                     {% endif %}
-                    {{ render(path('comments_list', {'trick_id': trick.id, 'page': 1})) }}
+                    {{ render(path('comments_list', {'trick_id': trick.id, 'page': page})) }}
                 </div>
             </div>
         </div>

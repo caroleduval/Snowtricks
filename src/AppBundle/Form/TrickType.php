@@ -24,15 +24,15 @@ class TrickType extends AbstractType
                     'class' => 'AppBundle:Category',
                     'choice_label' => 'name',
                     'multiple' => false,
-                    'expanded' => false
+                    'expanded' => false,
                 ))
                 ->add('photos', CollectionType::class, array(
                     'entry_type' => PhotoType::class,
                     'allow_add'    => true,
                     'allow_delete' => true,
-/*                    'by_reference' => false,
+                    'by_reference' => false,
                     'required' => false,
-                    'label'        => false,*/
+                    'label'        => false,
                 ))
                 ->add('videos', CollectionType::class, array(
                     'required' => false,

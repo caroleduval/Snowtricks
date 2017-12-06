@@ -1,11 +1,15 @@
 {% for comment in listComments %}
     <div class="row comment">
         <div class="col-xs-1">
-            <img src="{{ asset(comment.author.photo.webPath) }}" alt="{{ comment.author.firstName }}" />
+            {% if comment.author.photo is not null %}
+            <img src="{{ asset(comment.author.photo.webPath) }}" alt="{{ comment.author.username }}" />
+            {% else %}
+            <img src="{{ asset('images/picto.png') }}"  alt="Pas encore de photo" title="Pas encore de photo" />
+            {% endif %}
         </div>
         <div class="col-xs-10">
             Le {{ comment.dateCrea|date("d-m-Y à H:i:s") }},
-            {{ comment.author.firstName }} {{ comment.author.name }} a dit :
+            {{ comment.author.username }} {{ comment.author.name }} a dit :
             <p>{{ comment.content|nl2br }}</p>
         </div>
     </div>
@@ -16,7 +20,7 @@
     <ul class="pagination">
         {% for p in range(1, nbPages) %}
             <li{% if p == page %} class="active"{% endif %}>
-                <a href="{{ path('comments_list', {'trick_id': trick.id, 'page': p}) }}">{{ p }}</a>
+                <a href="{{ path('trick_view', {'slug': trick.slug, 'page': p}) }}">{{ p }}</a>
             </li>
         {% endfor %}
     </ul>

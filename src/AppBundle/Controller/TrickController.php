@@ -34,12 +34,13 @@ class TrickController extends Controller
     ));
     }
     /**
-     * @Route("/trick/{id}", name="trick_view", requirements={"id" = "\d+"})
+     * @Route("/trick/{slug}/{page}", name="trick_view",requirements={"page":"\d+"})
      */
-    public function viewAction(Trick $trick)
+    public function viewAction(Trick $trick,$page=1)
     {
         return $this->render('Trick/view.html.twig', array(
-            'trick' => $trick
+            'trick' => $trick,
+            'page'=>$page
         ));
     }
     /**
@@ -61,7 +62,7 @@ class TrickController extends Controller
 
                 $request->getSession()->getFlashBag()->add('notice', 'Trick bien enregistré.');
 
-                return $this->redirectToRoute('trick_view', array('id' => $trick->getId()));
+                return $this->redirectToRoute('trick_view', array('slug' => $trick->getSlug()));
             }
 
         // Si visite initiale (requête GET) ou formulaire invalide
@@ -70,7 +71,7 @@ class TrickController extends Controller
         ));
     }
     /**
-     * @Route("/modifier_un_trick/{id}", name="trick_edit", requirements={"id" = "\d+"})
+     * @Route("/modifier_un_trick/{slug}", name="trick_edit")
      * @Security("has_role('ROLE_USER')")
      */
     public function editAction(Request $request, EntityManagerInterface $em, Trick $trick)
@@ -103,7 +104,7 @@ class TrickController extends Controller
             }
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'Le trick a bien été enregistré.');
-            return $this->redirectToRoute('trick_view', array('id' => $trick->getId()));
+            return $this->redirectToRoute('trick_view', array('slug' => $trick->getSlug()));
         }
         return $this->render('Trick/add.html.twig', array(
             'trick'=> $trick,
@@ -111,7 +112,7 @@ class TrickController extends Controller
             ));
     }
     /**
-     * @Route("/supprimer_un_trick/{id}", name="trick_delete", requirements={"id" = "\d+"})
+     * @Route("/supprimer_un_trick/{slug}", name="trick_delete")
      * @Security("has_role('ROLE_USER')")
      */
     public function deleteAction(Request $request, EntityManagerInterface $em, Trick $trick)

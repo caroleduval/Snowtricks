@@ -162,126 +162,6 @@ class Video
         return $this->trick;
     }
 
-    /**
-     * @ORM\PrePersist() // Les trois événement suivant s’exécute avant que l’entité soit enregister
-     * @ORM\PreUpdate()
-     * @ORM\PreFlush()
-     */
-    public function extractIdentif()
-    {
-        $url = $this->getUrl();  // on récupère l’url
-
-        if (preg_match("#iframe#", $url))
-        {
-            if (preg_match("#//www.youtube.com/#", $url))
-            {
-                $this->youtubeIframe($url);
-            }
-            else if((preg_match("#//www.dailymotion.com/#", $url)))
-            {
-                $this->dailymotionIframe($url);
-            }
-            else if((preg_match("#//vimeo.com/#", $url)))
-            {
-                $this->vimeoIframe($url);
-            }
-        }
-        else
-        {
-            if (preg_match("#//www.youtube.com/#", $url))
-            {
-                $this->youtubeId($url);
-            }
-            else if((preg_match("#//www.dailymotion.com/#", $url)))
-            {
-                $this->dailymotionId($url);
-            }
-            else if((preg_match("#//vimeo.com/#", $url)))
-            {
-                $this->vimeoId($url);
-            }
-        }
-    }
-
-    private function youtubeId($url)
-    {
-        //ex : https://www.youtube.com/watch?v=92rXe1XJMuI
-        $tableaux = explode("=", $url);
-
-        $this->setIdentif($tableaux[1]);
-        $this->setType('youtube');
-    }
-
-    private function youtubeIframe($url)
-    {
-        //ex :  <iframe width="560" height="315"
-        //      src="https://www.youtube.com/embed/92rXe1XJMuI"
-        //      frameborder="0" allowfullscreen></iframe>
-        $tableau1 = explode("embed/", $url);
-        $tableau2 = explode("\"", $tableau1[1]);
-
-        $this->setIdentif($tableau2[0]);
-        $this->setType('youtube');
-    }
-
-    private function dailymotionId($url)
-    {
-        // ex : http://www.dailymotion.com/video/x4wh6to_la-planete-des-singes-3-video-virale_shortfilms
-        $cas = explode("/", $url);
-
-        $idb = $cas[4];  // On récupère la 4ème partie qui nous intéresse
-        $bp = explode("_", $idb);
-        $id = $bp[0];
-
-        $this->setIdentif($id);
-        $this->setType('dailymotion');
-    }
-
-    private function dailymotionIframe($url)
-    {
-        //ex :  <iframe frameborder="0" width="480" height="270"
-        //      src="//www.dailymotion.com/embed/video/x38yzyc"
-        //      allowfullscreen></iframe>
-
-        $tableau1 = explode("video/", $url);
-        $tableau2 = explode("\" ", $tableau1[1]);
-
-        $this->setIdentif($tableau2[0]);
-        $this->setType('dailymotion');
-    }
-
-    private function vimeoId($url)
-    {
-        // ex : https://vimeo.com/61350155
-        $tableaux = explode("/", $url);
-        $id = $tableaux[count($tableaux)-1];
-
-        $this->setIdentif($id);
-        $this->setType('vimeo');
-
-    }
-
-    private function vimeoIframe($url)
-    {
-        //ex :  <iframe src="https://player.vimeo.com/video/45834437?title=0&byline=0&portrait=0"
-        //      width="640" height="360" frameborder="0"
-        //      webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        if (preg_match("#/?title#", $url)){
-            $tableau1 = explode("video/", $url);
-            $tableau2 = explode("?", $tableau1[1]);
-
-            $this->setIdentif($tableau2[0]);
-            $this->setType('vimeo');
-        }
-        else {
-            $tableau1 = explode("video/", $url);
-            $tableau2 = explode("\"", $tableau1[1]);
-
-            $this->setIdentif($tableau2[0]);
-            $this->setType('vimeo');
-        }
-    }
-
     private  function url()
     {
         $control = $this->getType();  // on récupère le type de la vidéo
@@ -325,7 +205,6 @@ class Video
             $image = $hash[0]['thumbnail_small'];
             return $image;
         }
-
     }
 
     public function video()
