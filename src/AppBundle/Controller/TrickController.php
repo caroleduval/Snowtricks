@@ -10,10 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
-
-
-
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class TrickController
@@ -78,14 +75,36 @@ class TrickController extends Controller
         if (null === $trick) {
             throw new NotFoundHttpException("Le trick demandé n'existe pas.");
         }
+
+        $listPhotos = new ArrayCollection();
+        foreach ($trick->getPhotos() as $photo) {
+            $listPhotos->add($photo);
+        }
+        $listVideos = new ArrayCollection();
+        foreach ($trick->getVideos() as $video) {
+            $listVideos->add($video);
+        }
+
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $trick = $form->getData();
+            foreach ($listPhotos as $photo) {
+                if (false === $trick->getPhotos()->contains($photo)) {
+                    $em->remove($photo);
+                }
+            }
+
+            foreach ($listVideos as $video) {
+                if (false === $trick->getVideos()->contains($video)) {
+                    $em->remove($video);
+                }
+            }
             $em->flush();
             $request->getSession()->getFlashBag()->add('notice', 'Le trick a bien été enregistré.');
             return $this->redirectToRoute('trick_view', array('id' => $trick->getId()));
         }
-        return $this->render('Trick/edit.html.twig', array(
+        return $this->render('Trick/add.html.twig', array(
             'trick'=> $trick,
             'form' => $form->createView(),
             ));

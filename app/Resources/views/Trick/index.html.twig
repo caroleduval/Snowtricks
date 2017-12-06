@@ -1,43 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container main">
-        <div class="row">
-            {% for trick in listTricks %}
-                <div class="col-xs-12 col-sm-6 col-md-3 portfolio">
-                    <div class="portfolio-wrapper">
-                        <div class="thumbnail">
+    <div class="content">
+        <h2>Bienvenue sur SnowTricks, le site des amateurs de snowboard, par les amateurs de snowboard.</h2>
+        <p>Vous voulez des informations sur les tricks, ces figures acrobatiques réalisées par les freestylers du snowboard ?
+            La liste ci-dessous est pour vous ! Chaque trick a sa page avec les informations et les photos et videos qui vous permettront de mieux le maitriser.</p>
+        <h3>Inscrivez-vous !</h3>
+        <p>Vous vous y connaissez en trick et vous voulez ajouter des tricks et/ou les compléter.
+            Vous voulez échanger avec d'autres amateurs de snowboard.</p>
+    </div>
+    <div class="row">
+        {% for trick in listTricks %}
+            <div class="col-xs-12 col-sm-6 col-md-3 portfolio">
+                <div class="portfolio-wrapper">
+                    <div class="thumbnail">
                         {% if not trick.photos.isEmpty() %}
                             {% set thumb = trick.getThumbnail() %}
                             <a href="{{ path('trick_view', {'id': trick.id} ) }}"><img src="{{ asset(thumb.webPath) }}"  alt="thumb.alt" /></a>
                         {% else %}
-                            <img src="{{ asset('images/picto.png') }}"  alt="Pas encore de photo" title="Pas encore de photo" />
+                            <a href="{{ path('trick_view', {'id': trick.id} ) }}"><img src="{{ asset('images/picto.png') }}"  alt="Pas encore de photo" title="Pas encore de photo" /></a>
                         {% endif %}
-                        </div>
-                        <div class="row label-text">
-                            <div class="col-xs-6 col-xs-offset-3">
-                                <a href="{{ path('trick_view', {'id': trick.id} ) }}"><p class="text-title">{{ trick.name }}</p></a>
-                            </div>
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <div class="col-xs-3">
-                                    <ul class="f_nav">
-                                        <li><a href="{{ path('trick_edit', {'id': trick.id} ) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                        <li><a href="{{ path('trick_delete', {'id': trick.id} ) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
-                                    </ul>
-                                </div>
-                            {% endif %}
-                            <div class="col-xs-12 text-category">Groupe : {{ trick.category.name }}</div>
-                        </div>
-                        <div class="label-bg"></div>
                     </div>
+                    <div class="row label-text">
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <a href="{{ path('trick_view', {'id': trick.id} ) }}"><p class="text-title">{{ trick.name }}</p></a>
+                        </div>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <div class="col-xs-3">
+                                <ul class="f_nav">
+                                    <li><a href="{{ path('trick_edit', {'id': trick.id} ) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+                                    <li><a href="{{ path('trick_delete', {'id': trick.id} ) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        {% endif %}
+                        <div class="col-xs-12 text-category">Groupe : {{ trick.category.name }}</div>
+                    </div>
+                    <div class="label-bg"></div>
                 </div>
-            {% endfor %}
-        </div>
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <p>
+            </div>
+        {% endfor %}
+    </div>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <p class=" pull-right">
             <a class="btn btn-primary btn-lg" href="{{ path('trick_add') }}">J'ajoute un trick</a>
         </p>
-        {% endif %}
+    {% endif %}
     </div>
 {% endblock %}
 
