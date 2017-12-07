@@ -1,8 +1,0 @@
-<ul class="last">
-    {% for trick in listTricks %}
-    <li>
-        <h6>{{ trick.name }} - le {{ trick.lastUpdate|date("d-m-Y") }}</h6>
-        {{ trick.photos|length }} photos - {{ trick.videos|length }} vidéos
-    </li>
-    {% endfor %}
-</ul>

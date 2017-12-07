@@ -1,0 +1,57 @@
+Photo :
+    photo1:
+        trick : 1
+        type: jpg
+        alt: grab_mute_1
+    photo2:
+        trick : 1
+        type: jpg
+        alt: grab_mute_2
+    photo3:
+        trick : 2
+        type: jpg
+        alt: grab_sad_1
+    photo4:
+        trick : 2
+        type: jpg
+        alt: grab_sad_2
+    photo5:
+        trick : 3
+        type: jpg
+        alt: grab_indy_1
+    photo6:
+        trick : 3
+        type: jpg
+        alt: grab_indy_2
+    photo7:
+        trick : 4
+        type: jpg
+        alt: Cab_180_Piste_Cudlip_REP
+    photo8:
+        trick : 4
+        type: jpg
+        alt: grab_stalefish_1
+    photo9:
+        trick : 5
+        type: jpg
+        alt: grab_stalefish_2
+    photo10:
+        trick : 6
+        type: jpg
+        alt: rotation_360
+    photo11:
+        trick : 7
+        type: jpg
+        alt: front_flip
+    photo12:
+        trick : 8
+        type: jpg
+        alt: KBS_niseko-cayley
+    photo13:
+        trick : 9
+        type: jpg
+        alt: grab_seatbelt_1
+    photo14:
+        trick : 9
+        type: jpg
+        alt: grab_seatbelt_2

@@ -1,7 +1,0 @@
-<ul class="last">
-    {% for comment in listComments %}
-    <li>
-        {{ comment.author.userame|capitalize }} - trick <a href="{{ path('trick_view', {'id': comment.trick.id}) }}">"{{ comment.trick.name }}"</a>
-    </li>
-    {% endfor %}
-</ul>

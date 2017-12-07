@@ -26,13 +26,15 @@
                         <li><a href="{{ path('homepage') }}"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
                         </li>
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li><a href="{{ path('fos_user_profile_show') }}" title="Mon Profil"><i class="fa fa-user-circle fa-2x"
+                                                                  aria-hidden="true"></i></a></li>
                             <li><a href="{{ path('fos_user_security_logout') }}" title="Se déconnecter"><i
                                             class="fa fa-user-times fa-2x" aria-hidden="true"></i></a></li>
-                            <li><a href="#" title="Mon Profil"><i class="fa fa-user-circle fa-2x"
-                                                                  aria-hidden="true"></i></a></li>
                         {% else %}
                             <li><a href="{{ path('fos_user_security_login') }}" title="Me connecter"><i
                                             class="fa fa-user-circle fa-2x" aria-hidden="true"></i></a></li>
+                            <li><a href="{{ path('fos_user_registration_register') }}" title="M'inscrire"><i
+                                            class="fa fa-user-plus fa-2x" aria-hidden="true"></i></a></li>
                         {% endif %}
                     </ul>
                 </div>
