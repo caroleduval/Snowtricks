@@ -28,12 +28,10 @@ nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
-label{
-	color :#07087d;
-}
-legend{
-	padding-top: 15px;
-	padding-bottom: 15px;
+body {
+	font-family: 'Open Sans', sans-serif;
+	background:#fff;
+	font-size: 100%;
 }
 .container-fluid{
 	padding :0px;
@@ -41,12 +39,15 @@ legend{
 .container{
 	padding-top: 20px;
 }
-
-body {
-	font-family: 'Open Sans', sans-serif;
-	background:#fff;
-	font-size: 100%;
+.header_bg{
+	padding-left:4%;
+	padding-right: 4%px;
 }
+.main_bg{
+	background: #34495E;
+	padding: 30px 100px;
+}
+
 .content h2{
 	font-size: 1.2em;
 	color:#07087d;
@@ -64,7 +65,6 @@ body {
 	margin-bottom: 10px;
 }
 .thumbnail{
-
 	width:100%;
 	height: 150px;
 	line-height: 150px;
@@ -72,6 +72,14 @@ body {
 	border : none;
 	overflow:hidden;
 }
+label{
+	color :#07087d;
+}
+legend{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color : #07087d;
+	font-weight: 600;}
 .thumbnail img{
 	display: inline-block;
 	vertical-align: middle;
@@ -84,6 +92,27 @@ body {
 	margin:0 auto;
 	width:80%;
 }
+.fosuser{
+	color:#99CDD8;
+}
+.chute{
+	position: absolute;
+	color:#0000F0;
+}
+.chute h1{
+	margin-bottom: 15px;
+	font-weight: 600;
+}
+.chute p{
+	margin-bottom: 10px;
+}
+.chute strong{
+	font-size: 1.5em;
+	font-weight: 600;
+}
+.chute a{
+	color:#0000F0;
+}
 /* start header */
 
 .welcome{
@@ -93,9 +122,8 @@ body {
 	display: inline-block;
 	width: 100%;
 }
-legend{
-	color : #07087d;
-	font-weight: 600;
+.message{
+	margin-bottom: 20px;
 }
 .well span{
 	color : #07087d;
@@ -149,7 +177,7 @@ legend{
 }
 .champbis{
 	width: 100%;
-	height: 34px;
+	height: 68px;
 	padding: 6px 12px;
 	font-size: 14px;
 	line-height: 1.42857143;
@@ -247,10 +275,7 @@ i.fa:hover {
 }
 
 /*start main */
-.main_bg{
-	padding: 50px 100px;
-	background: #34495E;
-}
+
 .main{
 	padding: 4%;
 }
@@ -260,6 +285,13 @@ i.fa:hover {
 .content{
 	background: #fff;
 	padding: 4%;
+	margin-bottom: 15px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-o-border-radius: 4px;
+}
+.flash{
 	margin-bottom: 15px;
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -472,17 +504,26 @@ p.para{
 	-moz-box-shadow: 0px 0px 5px #DDDDDD;
 	-o-box-shadow: 0px 0px 5px #DDDDDD;
 }
-/***** Media Quries *****/
+/***** Media Queries *****/
 @media only screen and (max-width: 1024px) {
+	.main_bg{
+		padding: 50px 100px;
+	}
 	.menu li {
 		margin-right: 8px;
 	}
-	.menu li a {
-		padding: 8px 12px;
-		font-weight: 400;
+	.chute{
+		bottom: 30%;
+		right: 5%;
+	}
+	.chute h1{
+		font-size: 1.5em;
 	}
 }
 @media only screen and (max-width: 800px) {
+	.main_bg{
+		padding: 50px 100px;
+	}
 	.welcome{
 		float : inherit;
 	}
@@ -506,16 +547,30 @@ p.para{
 	.pagination li a {
 		padding: 8px 14px;
 	}
+	.chute{
+		bottom: 30%;
+		right: 5%;
+	}
 }
 @media only screen and (max-width: 640px){
+	.main_bg{
+		padding: 50px 40px;
+	}
 	.welcome{
 		float : inherit;
 	}
 	.content {
-		margin-top: -50px;
+		margin-top: -30px;
+	}
+	.chute{
+		bottom: 30%;
+		right: 5%;
 	}
 }
 @media only screen and (max-width: 480px) {
+	.main_bg{
+		padding: 50px 40px;
+	}
 	.welcome{
 		float : right;
 	}
@@ -538,8 +593,19 @@ p.para{
 	.details h2 {
 		font-size: 1em;
 	}
+	.chute{
+		bottom: 20%;
+		right: 10%;
+	}
 }
 @media only screen and (max-width: 320px) {
+	.main_bg{
+		padding: 50px 20px;
+	}
+/*	.header_bg{
+		padding-left:20px;
+		padding-right: 20px;
+	}*/
 	.welcome{
 		float : right;
 	}
@@ -552,6 +618,10 @@ p.para{
 	.content {
 		margin-top: -20px;
 	}
+	.menu li a {
+		padding: 6px 8px;
+		font-weight: 400;
+	}
 	#portfoliolist .portfolio {
 		width: 100%;
 		margin: 10px 0px;
@@ -561,5 +631,12 @@ p.para{
 	}
 	.pagination {
 		top: -15px;
+	}
+	.chute{
+		bottom: 20%;
+		right: 20%;
+	}
+	.chute h1{
+		font-size: 1.2em;
 	}
 }

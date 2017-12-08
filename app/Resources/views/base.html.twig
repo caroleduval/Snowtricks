@@ -21,30 +21,28 @@
     <div class="header_bg">
         <div class="header">
             <div class="row">
-                <div class="pull-right col-xs-3">
+                <div class="pull-right col-xs-6 col-sm-4 col-md-3 col-lg-2">
                     <ul class="menu">
                         <li><a href="{{ path('homepage') }}"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
                         </li>
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <li><a href="{{ path('fos_user_profile_show') }}" title="Mon Profil"><i class="fa fa-user-circle fa-2x"
-                                                                  aria-hidden="true"></i></a></li>
-                            <li><a href="{{ path('fos_user_security_logout') }}" title="Se déconnecter"><i
-                                            class="fa fa-user-times fa-2x" aria-hidden="true"></i></a></li>
+                            <li><a href="{{ path('fos_user_profile_show') }}" title="Mon Profil">
+                                    <i class="fa fa-user-circle fa-2x"aria-hidden="true"></i></a></li>
+                            <li><a href="{{ path('fos_user_security_logout') }}" title="Se déconnecter">
+                                    <i class="fa fa-user-times fa-2x" aria-hidden="true"></i></a></li>
                         {% else %}
-                            <li><a href="{{ path('fos_user_security_login') }}" title="Me connecter"><i
-                                            class="fa fa-user-circle fa-2x" aria-hidden="true"></i></a></li>
-                            <li><a href="{{ path('fos_user_registration_register') }}" title="M'inscrire"><i
-                                            class="fa fa-user-plus fa-2x" aria-hidden="true"></i></a></li>
+                            <li><a href="{{ path('fos_user_security_login') }}" title="Me connecter">
+                                    <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></a></li>
+                            <li><a href="{{ path('fos_user_registration_register') }}" title="M'inscrire">
+                                    <iclass="fa fa-user-plus fa-2x" aria-hidden="true"></i></a></li>
                         {% endif %}
                     </ul>
                 </div>
                 <div class="clear"></div>
-                <div class="pull-right  col-xs-3">
-                    <p class="welcome text-center h4">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            Hello {{ app.user.username|upper }} !
+                <div class="pull-right text-center welcome h4 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            Hello {{ app.user.username|upper }}
                         {% endif %}
-                    </p>
                 </div>
             </div>
             <div class="clear"></div>
@@ -59,6 +57,13 @@
     </div>
 
     <div class="main_bg">
+            {{ dump(app.session.flashbag('info')) }}
+        <div class="content flash">
+            {% for message in app.flashes %}
+                un message <div class="alert alert-info">{{ message }}</div>
+            {% endfor %}
+        </div>
+
         {% block body %}
             <div title="container">
             {# contenu des pages #}
@@ -69,11 +74,11 @@
     <div class="footer_bg low">
         <div class="footer">
             <div class="row">
-                <div class="last col-xs-6">
+                <div class="last col-xs-12 col-md-6">
                     <h4>A propos de ce site</h4>
                     <p>Ce site a été réalisé dans le cadre d'une formation.<br> Tout son contenu est fictif.</p>
                 </div>
-                <div class="last col-xs-6">
+                <div class="last col-xs-12 col-md-6">
                     <h4>A propos de moi</h4>
                     <span>Retrouvez moi sur les réseaux sociaux :</span>
                     <div class="f_icons">

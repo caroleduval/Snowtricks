@@ -1,0 +1,19 @@
+User :
+    user1:
+        username : carole
+        name : duval
+        email : karole.duval@caramail.com
+        password : password
+        photo : 16.jpg
+    user2:
+        username : bertrand
+        name : dubois
+        email : bdu@gmail.com
+        password : password
+        photo : 17.png
+    user3:
+        username : cecile
+        name : foret
+        email : cecile@hotmail.com
+        password : password
+        photo :

@@ -17,6 +17,7 @@
     <p class="text-center">Pas encore de commentaires.</p>
 {% endfor %}
 <div>
+    {% if nbPages >1 %}
     <ul class="pagination">
         {% for p in range(1, nbPages) %}
             <li{% if p == page %} class="active"{% endif %}>
@@ -24,4 +25,5 @@
             </li>
         {% endfor %}
     </ul>
+    {% endif %}
 </div>

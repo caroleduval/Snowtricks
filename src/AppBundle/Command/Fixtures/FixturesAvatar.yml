@@ -1,0 +1,7 @@
+Photo :
+    photo1:
+        type: png
+        alt: carole
+    photo2:
+        type: jpg
+        alt: bertrand

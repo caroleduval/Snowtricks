@@ -24,7 +24,7 @@ class TrickController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(EntityManagerInterface $em)
+    public function indexAction(EntityManagerInterface $em, Request $request)
     {
         $listTricks = $em->getRepository(Trick::class)
             ->findAll();
@@ -36,7 +36,7 @@ class TrickController extends Controller
     /**
      * @Route("/trick/{slug}/{page}", name="trick_view",requirements={"page":"\d+"})
      */
-    public function viewAction(Trick $trick,$page=1)
+    public function viewAction(Trick $trick,$page=1,Request $request)
     {
         return $this->render('Trick/view.html.twig', array(
             'trick' => $trick,
@@ -60,7 +60,7 @@ class TrickController extends Controller
                 $em->persist($trick);
                 $em->flush();
 
-                $request->getSession()->getFlashBag()->add('notice', 'Trick bien enregistré.');
+                $this->addFlash('info', 'Trick bien enregistré.');
 
                 return $this->redirectToRoute('trick_view', array('slug' => $trick->getSlug()));
             }
@@ -103,7 +103,7 @@ class TrickController extends Controller
                 }
             }
             $em->flush();
-            $request->getSession()->getFlashBag()->add('notice', 'Le trick a bien été enregistré.');
+            $this->addFlash('info', 'Le trick a bien été enregistré.');
             return $this->redirectToRoute('trick_view', array('slug' => $trick->getSlug()));
         }
         return $this->render('Trick/add.html.twig', array(
@@ -128,7 +128,7 @@ class TrickController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->remove($trick);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('notice', 'Le trick a bien été supprimé.');
+            $this->addFlash('info', 'Le trick a bien été supprimé.');
             return $this->redirectToRoute('homepage');
         }
         return $this->render('Trick/delete.html.twig', array(

@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <div class="read_more">
+                    <div class="read_more text-center">
                         <a class="btn" href="{{ path('trick_edit', {'slug': trick.slug} ) }}">Modifier</a>
                         <a class="btn" href="{{ path('trick_delete', {'slug': trick.slug} ) }}">Supprimer</a>
                     </div>
