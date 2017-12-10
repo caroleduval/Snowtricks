@@ -58,7 +58,7 @@ class LoadingUserCommand extends ContainerAwareCommand
             $date = \DateTime::createFromFormat('Y-m-d H:i:s', $column['dateCrea']);
             $comment->setDateCrea($date);
             $comment->setContent($column['content']);
-            $linkedTrick = $TrickRepo->find($column['trick']);
+            $linkedTrick = $TrickRepo->findOneBy(array('name'=>$column['trick']))   ;
             $comment->setTrick($linkedTrick);
             $em->persist($comment);
         }
