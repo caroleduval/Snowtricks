@@ -8,12 +8,12 @@
         {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <a href="{{ path('fos_user_registration_register') }}" title="S'enregistrer"><h3>Inscrivez-vous !</h3></a>
             <div class="row">
-                <div class="col-xs-12 col-sm-9">
+                <div class="col-xs-12 col-md-9">
                     <p>Vous vous y connaissez en trick et vous voulez ajouter des tricks et/ou les compléter ?</p>
                     <p>Vous voulez échanger avec d'autres amateurs de snowboard ?</p>
                     <p>En vous inscrivant, vous entrez dans la communauté SnowTricks et vous pouvez devenir contributeur du site.</p>
                 </div>
-                <div class="col-xs-12 col-sm-3">
+                <div class="col-xs-12 col-md-3">
                     <a class="btn btn-primary btn-lg" href="{{ path('fos_user_registration_register') }}">Je m'inscris maintenant</a>
                 </div>
             </div>

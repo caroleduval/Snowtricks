@@ -47,7 +47,6 @@ body {
 	background: #34495E;
 	padding: 30px 100px;
 }
-
 .content h2{
 	font-size: 1.2em;
 	color:#07087d;
@@ -93,6 +92,9 @@ legend{
 	width:80%;
 }
 .fosuser{
+	color:#99CDD8;
+}
+.message p{
 	color:#99CDD8;
 }
 .chute{
@@ -277,7 +279,7 @@ i.fa:hover {
 /*start main */
 
 .main{
-	padding: 4%;
+	padding: 2% 4%;
 }
 .low{
 	padding: 2% 4% 2% 4%;

@@ -39,6 +39,7 @@ class LoadingUserCommand extends ContainerAwareCommand
             $user = new User();
             $user->setUsername($column['username']);
             $user->setName($column['name']);
+            $user->setEnabled('true');
             $user->setEmail($column['email']);
             $user->setPassword($password);
             if (! is_null($column['photo'] )){
