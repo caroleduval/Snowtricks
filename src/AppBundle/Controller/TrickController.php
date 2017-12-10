@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\Common\Collections\ArrayCollection;
 
+
 /**
  * Class TrickController
  * @package AppBundle\Controller
@@ -21,22 +22,23 @@ class TrickController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(EntityManagerInterface $em)
+    public function indexAction(EntityManagerInterface $em, Request $request)
     {
         $listTricks = $em->getRepository(Trick::class)
             ->findAll();
 
         return $this->render('Trick/index.html.twig', array(
-        'listTricks' => $listTricks
-    ));
+            'listTricks' => $listTricks
+        ));
     }
     /**
-     * @Route("/trick/{id}", name="trick_view", requirements={"id" = "\d+"})
+     * @Route("/trick/{slug}/{page}", name="trick_view",requirements={"page":"\d+"})
      */
-    public function viewAction(Trick $trick)
+    public function viewAction(Trick $trick,$page=1,Request $request)
     {
         return $this->render('Trick/view.html.twig', array(
-            'trick' => $trick
+            'trick' => $trick,
+            'page'=>$page
         ));
     }
     /**
@@ -52,14 +54,14 @@ class TrickController extends Controller
 
         $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                $em->persist($trick);
-                $em->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($trick);
+            $em->flush();
 
-                $request->getSession()->getFlashBag()->add('notice', 'Trick bien enregistré.');
+            $this->addFlash("info", "Le trick a bien été enregistré.");
 
-                return $this->redirectToRoute('trick_view', array('id' => $trick->getId()));
-            }
+            return $this->redirectToRoute('trick_view', array('slug' => $trick->getSlug()));
+        }
 
         // Si visite initiale (requête GET) ou formulaire invalide
         return $this->render('Trick/add.html.twig', array(
@@ -67,7 +69,7 @@ class TrickController extends Controller
         ));
     }
     /**
-     * @Route("/modifier_un_trick/{id}", name="trick_edit", requirements={"id" = "\d+"})
+     * @Route("/modifier_un_trick/{slug}", name="trick_edit")
      * @Security("has_role('ROLE_USER')")
      */
     public function editAction(Request $request, EntityManagerInterface $em, Trick $trick)
@@ -75,7 +77,6 @@ class TrickController extends Controller
         if (null === $trick) {
             throw new NotFoundHttpException("Le trick demandé n'existe pas.");
         }
-
         $listPhotos = new ArrayCollection();
         foreach ($trick->getPhotos() as $photo) {
             $listPhotos->add($photo);
@@ -94,23 +95,23 @@ class TrickController extends Controller
                     $em->remove($photo);
                 }
             }
-
             foreach ($listVideos as $video) {
                 if (false === $trick->getVideos()->contains($video)) {
                     $em->remove($video);
                 }
             }
             $em->flush();
-            $request->getSession()->getFlashBag()->add('notice', 'Le trick a bien été enregistré.');
-            return $this->redirectToRoute('trick_view', array('id' => $trick->getId()));
+
+            $this->addFlash("info", "Le trick a bien été enregistré.");
+            return $this->redirectToRoute('trick_view', array('slug' => $trick->getSlug()));
         }
         return $this->render('Trick/add.html.twig', array(
             'trick'=> $trick,
             'form' => $form->createView(),
-            ));
+        ));
     }
     /**
-     * @Route("/supprimer_un_trick/{id}", name="trick_delete", requirements={"id" = "\d+"})
+     * @Route("/supprimer_un_trick/{slug}", name="trick_delete")
      * @Security("has_role('ROLE_USER')")
      */
     public function deleteAction(Request $request, EntityManagerInterface $em, Trick $trick)
@@ -126,7 +127,7 @@ class TrickController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->remove($trick);
             $em->flush();
-            $request->getSession()->getFlashBag()->add('notice', 'Le trick a bien été supprimé.');
+            $this->addFlash('info', 'Le trick a bien été supprimé.');
             return $this->redirectToRoute('homepage');
         }
         return $this->render('Trick/delete.html.twig', array(
@@ -138,11 +139,11 @@ class TrickController extends Controller
     {
         $listTricks = $em->getRepository('AppBundle:Trick')
             ->findBy(
-            array(),
-            array('lastUpdate' => 'desc'),
-            $limit,
-            0
-        );
+                array(),
+                array('lastUpdate' => 'desc'),
+                $limit,
+                0
+            );
         return $this->render('Trick/list.html.twig', array(
             'listTricks' => $listTricks
         ));

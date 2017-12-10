@@ -15,9 +15,8 @@
                         <input type="submit" class="btn btn-danger" value="Supprimer">
                     </div>
                     <div class="col-sm-1 col-sm-offset-3 col-xs-12">
-                        <a href="{{ path('homepage')}}" class="btn btn-default">Annuler</a>
+                        <a href="{{ path('trick_view', {'slug': trick.slug} ) }}" class="btn btn-default">Annuler</a>
                     </div>
-
                 </div>
             </fieldset>
             {{ form_end(form) }}

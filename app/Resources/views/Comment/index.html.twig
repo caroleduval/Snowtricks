@@ -1,16 +1,10 @@
-<div id="comment_figure">
-    <div id="comments_post_figure">
-
-        <span>Messages</span>
-
-
-        {% for comment in listComments %}
-    <div class="row">
-        <div class="col-xs-2">
+{% for comment in listComments %}
+    <div class="row comment">
+        <div class="col-xs-1">
             {% if comment.author.photo is not null %}
-            <img src="{{ asset(comment.author.photo.webPath) }}" alt="{{ comment.author.username }}" />
+                <img src="{{ asset(comment.author.photo.webPath) }}" alt="{{ comment.author.username }}" />
             {% else %}
-            <img src="{{ asset('images/unknown.png')  }}" alt="" />
+                <img src="{{ asset('images/picto.png') }}"  alt="Pas encore de photo" title="Pas encore de photo" />
             {% endif %}
         </div>
         <div class="col-xs-10">
@@ -22,13 +16,14 @@
 {% else %}
     <p class="text-center">Pas encore de commentaires.</p>
 {% endfor %}
-
-        <div id="comment_pagination">
-<ul class="pagination">
-    {% for p in range(1, nbPages)  if nbPages != 0 %}
-        <li{% if p == page %} class="active"{% endif %}>
-            <a class="pagin" {% if nbPages < 1 %}href="#"{% endif %}>{{ p }}</a>
-
-        </li>
-    {% endfor %}
-</ul>
+<div>
+    {% if nbPages >1 %}
+        <ul class="pagination">
+            {% for p in range(1, nbPages) %}
+                <li{% if p == page %} class="active"{% endif %}>
+                    <a href="{{ path('trick_view', {'slug': trick.slug, 'page': p}) }}">{{ p }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

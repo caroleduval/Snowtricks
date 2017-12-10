@@ -24,14 +24,13 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
-     *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo", cascade={"persist", "remove"})
+     * @Assert\Valid()
      */
     private $photo;
 

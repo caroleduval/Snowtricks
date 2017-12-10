@@ -29,21 +29,58 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'
+    AppBundle\:
+        resource: '../../src/AppBundle/*'
+        exclude: '../../src/AppBundle/{Entity,Repository,Tests}'
 
     twig.extension.debug:
         class: Twig_Extension_Debug
         tags:
             - { name: 'twig.extension' }
 
-    AppBundle.Video.Recorder:
-        class: AppBundle\VideoRecorder
-
     app.form.registration:
             class: AppBundle\Form\RegistrationType
             tags:
                 - { name: form.type, alias: app_user_registration }
 
+    app.form.profile:
+            class: AppBundle\Form\ProfileType
+            tags:
+                - { name: form.type, alias: fos_user_profile }
+
+    app.service.iframe_builder:
+        class: AppBundle\Service\IframeBuilder
+
+    app.doctrine_listener.video_creation:
+        class: AppBundle\DoctrineListener\VideoCreationListener
+        arguments:
+          - "@app.service.iframe_builder"
+        tags:
+          - { name: doctrine.event_listener, event: prePersist }
+
+    app.service.user_mailer:
+          class: AppBundle\Service\UserMailer
+          arguments:
+              - "@mailer"
+
+    app.doctrine_listener.user_creation:
+        class: AppBundle\DoctrineListener\UserCreationListener
+        arguments:
+          - "@app.service.user_mailer"
+        tags:
+          - { name: doctrine.event_listener, event: postPersist }
+
+    app.service.file_uploader:
+        class: AppBundle\Service\FileUploader
+
+    app.doctrine_listener.photo_upload:
+        class: AppBundle\DoctrineListener\PhotoUploadListener
+        arguments:
+            - "@app.service.file_uploader"
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: postRemove }
