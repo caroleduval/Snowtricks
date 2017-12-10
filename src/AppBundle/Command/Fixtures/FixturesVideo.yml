@@ -1,0 +1,33 @@
+Video:
+    video1:
+        trick: 1
+        type: youtube
+        identif: 4sha5smEUHA
+    video2:
+        trick: 2
+        type: youtube
+        identif: KEdFwJ4SWq4
+    video3:
+        trick: 3
+        type: dailymotion
+        identif: x11jh6u
+    video4:
+        trick: 3
+        type: dailymotion
+        identif: x11jh6u_snowboard-indy-grab_sport
+    video5:
+        trick: 4
+        type: vimeo
+        identif: 7678393
+    video6:
+        trick: 6
+        type: youtube
+        identif: JJy39dO_PPE
+    video7:
+        trick: 7
+        type: youtube
+        identif: xhvqu2XBvI0
+    video8:
+        trick: 8
+        type: youtube
+        identif: czpV-FOBHY4
