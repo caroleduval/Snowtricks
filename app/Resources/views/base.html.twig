@@ -7,149 +7,93 @@
     <title>{% block title %}SnowTricks{% endblock %}</title>
     <script src="https://use.fontawesome.com/e0a1d229f0.js"></script>
     <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/comment.js') }}"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
-
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-{#    {% block javascripts %}
-    <!--  jquery plguin -->
-        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-    <!-- start gallery -->
-        <script type="text/javascript" src="{{ asset('js/jquery.easing.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/jquery.mixitup.min.js') }}"></script>
-    <script type="text/javascript">
-        $(function () {
-
-            var filterList = {
-
-                init: function () {
-
-                    // MixItUp plugin
-                    // http://mixitup.io
-                    $('#portfoliolist').mixitup({
-                        targetSelector: '.portfolio',
-                        filterSelector: '.filter',
-                        effects: ['fade'],
-                        easing: 'snap',
-                        // call the hover effect
-                        onMixEnd: filterList.hoverEffect()
-                    });
-
-                },
-
-                hoverEffect: function () {
-
-                    // Simple parallax effect
-                    $('#portfoliolist .portfolio').hover(
-                        function () {
-                            $(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
-                            $(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');
-                        },
-                        function () {
-                            $(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
-                            $(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');
-                        }
-                    );
-
-                }
-
-            };
-
-            // Run the show!
-            filterList.init();
-
-        });
-    </script>
-    <!-- Add fancyBox main JS and CSS files -->
-        <link href="{{ asset('css/magnific-popup.css') }}" rel="stylesheet" />
-        <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('.popup-with-zoom-anim').magnificPopup({
-                type: 'inline',
-                fixedContentPos: false,
-                fixedBgPos: true,
-                overflowY: 'auto',
-                closeBtnInside: true,
-                preloader: false,
-                midClick: true,
-                removalDelay: 300,
-                mainClass: 'my-mfp-zoom-in'
-            });
-        });
-    </script>
-    {% endblock %}#}
 </head>
 
-<body>
+
 <!-- start header -->
-    <div class="container-fluid">
-        <div class="header_bg">
-            <div class="header">
-                <div class="row">
-                    <div class="pull-right col-xs-3">
-                        <ul class="menu">
-                            <li><a href="{{ path('homepage') }}"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <li><a href="{{ path('fos_user_security_logout') }}" title="Se déconnecter"><i class="fa fa-user-times fa-2x" aria-hidden="true"></i></a></li>
-                            {% else %}
-                                <li><a href="{{ path('fos_user_security_login') }}" title="Se connecter"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></a></li>
-                            {% endif %}
+<body>
+<div class="container-fluid">
+    <div class="header_bg">
+        <div class="header">
+            <div class="row">
+                <div class="pull-right col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <ul class="menu">
+                        <li><a href="{{ path('homepage') }}"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+                        </li>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li><a href="{{ path('fos_user_profile_show') }}" title="Mon Profil">
+                                    <i class="fa fa-user-circle fa-2x"aria-hidden="true"></i></a></li>
+                            <li><a href="{{ path('fos_user_security_logout') }}" title="Se déconnecter">
+                                    <i class="fa fa-user-times fa-2x" aria-hidden="true"></i></a></li>
+                        {% else %}
+                            <li><a href="{{ path('fos_user_security_login') }}" title="Me connecter">
+                                    <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i></a></li>
+                            <li><a href="{{ path('fos_user_registration_register') }}" title="M'inscrire">
+                                    <iclass="fa fa-user-plus fa-2x" aria-hidden="true"></i></a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="clear"></div>
+                <div class="pull-right text-center welcome h4 col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        Hello {{ app.user.username|upper }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="header_btm">
+            <div class="h_left">
+                <h2>Bienvenue sur SnowTricks.</h2>
+                <h3 class="hidden-xs">Site communautaire des amateurs de snowboard.</h3>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="main_bg">
+        <div title="container">
+            <div class="main">
+            {% for flash_message in app.session.flashBag.get("info") %}
+                <div class="alert alert-success">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
+            </div>
+        {% block body %}
+            <div title="container">
+                {# contenu des pages #}
+            </div>
+        {% endblock %}
+    </div>
+
+    <div class="footer_bg low">
+        <div class="footer">
+            <div class="row">
+                <div class="last col-xs-12 col-md-6">
+                    <h4>A propos de ce site</h4>
+                    <p>Ce site a été réalisé dans le cadre d'une formation.<br> Tout son contenu est fictif.</p>
+                </div>
+                <div class="last col-xs-12 col-md-6">
+                    <h4>A propos de moi</h4>
+                    <span>Retrouvez moi sur les réseaux sociaux :</span>
+                    <div class="f_icons">
+                        <ul>
+                            <li><a href="https://github.com/caroleduval"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
+                            <li><a href="https://openclassrooms.facebook.com/profile.php?id=100016853288099"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
+                            <li><a href="https://linkedin.com/in/carole-duvall"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
-                    <div class="clear"></div>
-                    <div class="pull-right  col-xs-3">
-                        <p class="welcome text-center h4">
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                Hello {{ app.user.username|capitalize }} !
-                            {% endif %}
-                        </p>
-                    </div>
                 </div>
                 <div class="clear"></div>
-            </div>
-            <div class="header_btm">
-                <div class="h_left">
-                    <h2>Bienvenue sur SnowTricks.</h2>
-                    <h3 class="hidden-xs">Site communautaire des amateurs de snowboard.</h3>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
-        <div class="main_bg">
-            <div class="container main">
-                {% block body %}
-                {% endblock %}
-            </div>
-        </div>
-
-        <div class="footer_bg low">
-            <div class="footer">
-                <div class="row">
-                    <div class="last col-xs-6">
-                        <h4>A propos de ce site</h4>
-                        <p>Ce site a été réalisé dans le cadre d'une formation.<br> Tout son contenu est fictif.</p>
-                    </div>
-                    <div class="last col-xs-6">
-                        <h4>A propos de moi</h4>
-                        <span>Retrouvez moi sur les réseaux sociaux :</span>
-                        <div class="f_icons">
-                            <ul>
-                                <li><a href="https://github.com/caroleduval"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a></li>
-                                <li><a href="https://openclassrooms.facebook.com/profile.php?id=100016853288099"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a></li>
-                                <li><a href="https://linkedin.com/in/carole-duvall"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

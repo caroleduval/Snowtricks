@@ -28,78 +28,14 @@ class Photo
      * @var UploadedFile
      */
     private $file;
-        /**
-         * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="photos")
-         */
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Trick", inversedBy="photos")
+     */
     private $trick;
 
-    // On ajoute cet attribut pour y stocker le nom du fichier temporairement
+    // Stockage temporaire du nom du fichier
     private $tempFilename;
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
 
-    public function preUpload()
-    {
-        // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
-        if (null === $this->file) {
-            return;
-        }
-        $this->type = $this->file->guessExtension();
-        $this->alt = $this->file->getClientOriginalName();
-    }
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
-    public function upload()
-    {
-        // Si jamais il n'y a pas de fichier (champ facultatif), on ne fait rien
-        if (null === $this->file) {
-            return;
-        }
-        // Si on avait un ancien fichier (attribut tempFilename non null), on le supprime
-        if (null !== $this->tempFilename) {
-            $oldFile = $this->getUploadRootDir().'/'.$this->id.'.'.$this->tempFilename;
-            if (file_exists($oldFile)) {
-                unlink($oldFile);
-            }
-        }
-        // On déplace le fichier envoyé dans le répertoire de notre choix
-        $this->file->move(
-            $this->getUploadRootDir(),
-            $this->id.'.'.$this->type
-        );
-    }
-    /**
-     * @ORM\PreRemove()
-     */
-    public function preRemoveUpload()
-    {
-        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.'.'.$this->type;
-    }
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload()
-    {
-        if (file_exists($this->tempFilename)) {
-            unlink($this->tempFilename);
-        }
-    }
-    public function getUploadDir()
-    {
-        return 'upload/photos';
-    }
-    protected function getUploadRootDir()
-    {
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
-    }
-    public function getWebPath()
-    {
-        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getType();
-    }
     /**
      * @return int
      */
@@ -136,11 +72,18 @@ class Photo
         return $this->alt;
     }
     /**
-     * @return UploadedFile
+     * @param string $tempFilename
      */
-    public function getFile()
+    public function setTempFilename($tempFilename)
     {
-        return $this->file;
+        $this->tempFilename = $tempFilename;
+    }
+    /**
+     * @return string
+     */
+    public function getTempFilename()
+    {
+        return $this->tempFilename;
     }
     /**
      * @param UploadedFile $file
@@ -155,7 +98,23 @@ class Photo
             $this->alt = null;
         }
     }
+    /**
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
 
+    /**
+     * @param Trick $trick
+     * @return $this
+     */
+    public function setTrick(Trick $trick)
+    {
+        $this->trick = $trick;
+        return $this;
+    }
     /**
      * @return mixed
      */
@@ -164,12 +123,16 @@ class Photo
         return $this->trick;
     }
 
-    /**
-     * @param mixed $trick
-     */
-    public function setTrick(Trick $trick)
+    public function getUploadDir()
     {
-        $this->trick = $trick;
-        return $this;
+        return 'upload/photos';
+    }
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+    public function getWebPath()
+    {
+        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getType();
     }
 }

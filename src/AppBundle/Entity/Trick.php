@@ -63,7 +63,7 @@ class Trick
     private $videos;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick", cascade={"persist","remove"})
      */
     private $comments;
 
@@ -197,13 +197,10 @@ class Trick
      */
     public function setPhotos($photos)
     {
-        foreach ($photos as $photo) {
-            $this->addPhoto($photo);
-        }
+        $this->photos = $photos;
 
         return $this;
     }
-
     /**
      * Add photo
      *
@@ -213,13 +210,11 @@ class Trick
      */
     public function addPhoto(\AppBundle\Entity\Photo $photo)
     {
-        // L'ordre de ces deux lignes est important !
+        $this->photos[] = $photo;
         $photo->setTrick($this);
-        $this->trick[] = $photo;
 
         return $this;
     }
-
     /**
      * Get photos
      *
@@ -239,9 +234,7 @@ class Trick
      */
     public function setVideos($videos)
     {
-        foreach ($videos as $video) {
-            $this->addVideo($video);
-        }
+        $this->videos = $videos;
 
         return $this;
     }
@@ -300,9 +293,8 @@ class Trick
      */
     public function addVideo(\AppBundle\Entity\Video $video)
     {
-        // L'ordre de ces deux lignes est important !
+        $this->videos[] = $video;
         $video->setTrick($this);
-        $this->trick[] = $video;
 
         return $this;
     }
@@ -352,7 +344,7 @@ class Trick
     {
         return $this->lastUpdate;
     }
-    
+
     public function getThumbnail()
     {
         $thumbnail=$this->photos->first();
