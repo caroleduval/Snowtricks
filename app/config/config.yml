@@ -100,8 +100,8 @@ parameters:
         mailer: fos_user.mailer.twig_swift
         confirmation:
             from_email:
-                address:
-                sender_name:
+                address: "%mailer_user%"
+                sender_name: "Carole"
             enabled:    true
             template:   FOSUserBundle:Registration:email.txt.twig
 
