@@ -1,31 +1,29 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\Photo;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class PhotoType extends AbstractType
+class CategoryType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('file', FileType::class, array(
-                'label'=> false
-            ))
-        ;
+        $builder->add('Groupe', TextType::class);
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Photo::class
+            'data_class' => Category::class
         ));
     }
 
@@ -34,7 +32,7 @@ class PhotoType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_photo';
+        return 'appbundle_category';
     }
 
 

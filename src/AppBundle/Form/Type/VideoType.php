@@ -1,32 +1,31 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\Comment;
+use AppBundle\Entity\Video;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class CommentType extends AbstractType
+class VideoType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('content', TextareaType::class, array(
-            'label' => 'false',
+        $builder->add('url', UrlType::class, array(
         ));
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Comment::class
+            'data_class' => Video::class
         ));
     }
 
@@ -35,8 +34,6 @@ class CommentType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_comment';
+        return 'appbundle_video';
     }
-
-
 }
