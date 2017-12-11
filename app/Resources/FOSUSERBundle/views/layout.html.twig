@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div>
     {% for key, messages in app.session.flashbag.all() %}
         {% for message in messages %}
             <div class="alert alert-{{ key }}">
@@ -9,10 +8,10 @@
             </div>
         {% endfor %}
     {% endfor %}
-    </div>
 
+    <div class="row fosuser">
     {% block fos_user_content %}
 
     {% endblock fos_user_content %}
-
+    </div>
 {% endblock %}

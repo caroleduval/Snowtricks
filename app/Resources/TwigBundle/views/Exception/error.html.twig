@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="container text-center">
+        <h1>Une erreur est survenue.</h1>
+        <p>Merci de nous laisser un message via les réseaux sociaux.</p>
+        <a href="{{ path('homepage') }}">Retourner à l'accueil</a>
+    </div>
+    <div class="bug">
+        Erreur : {{ status_code }} {{ status_text }}.
+
+    </div>
+
+{% endblock %}
