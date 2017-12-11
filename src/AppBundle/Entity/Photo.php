@@ -33,8 +33,8 @@ class Photo
      *     maxSize = "2M",
      *     mimeTypes = {"image/jpeg","image/jpg", "image/gif", "image/png"},
      *     mimeTypesMessage = "Format photo non valide",
-     *     notFoundMessage = "Le fichier n'a pas été trouvé sur le disque",
-     *     uploadErrorMessage = "Erreur dans l'upload du fichier"
+     *     notFoundMessage = "Le fichier photo n'a pas été trouvé sur le disque",
+     *     uploadErrorMessage = "Erreur dans l'upload du fichier photo"
      * )
      */
     private $file;
