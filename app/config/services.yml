@@ -39,12 +39,12 @@ services:
             - { name: 'twig.extension' }
 
     app.form.registration:
-            class: AppBundle\Form\RegistrationType
+            class: AppBundle\Form\Type\RegistrationType
             tags:
                 - { name: form.type, alias: app_user_registration }
 
     app.form.profile:
-            class: AppBundle\Form\ProfileType
+            class: AppBundle\Form\Type\ProfileType
             tags:
                 - { name: form.type, alias: fos_user_profile }
 
