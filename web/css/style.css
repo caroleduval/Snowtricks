@@ -36,9 +36,9 @@ body {
 .container-fluid{
 	padding :0px;
 }
-.container{
-	padding-top: 20px;
-}
+/*.container{*/
+	/*padding-top: 20px;*/
+/*}*/
 .header_bg{
 	padding-left:4%;
 	padding-right: 4%px;

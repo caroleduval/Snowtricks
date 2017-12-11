@@ -84,3 +84,9 @@ services:
             - { name: doctrine.event_listener, event: postUpdate }
             - { name: doctrine.event_listener, event: preRemove }
             - { name: doctrine.event_listener, event: postRemove }
+
+    app.service.collection_updater:
+        class: AppBundle\Service\CollectionUpdater
+        arguments:
+            - "@doctrine.orm.entity_manager"
+
