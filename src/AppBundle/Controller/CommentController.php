@@ -17,8 +17,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CommentController extends Controller
 {
     /**
-     * @Route("/trick/{trick_id}/comments/{page}", name="comments_list", requirements={"trick" = "\d+","page" = "\d+"})
-     * @ParamConverter("trick", options={"mapping": {"trick_id": "id"}})
+     * @Route("/trick/{slug}/comments/{page}", name="comments_list", requirements={"page" = "\d+"})
+     * @ParamConverter("trick", options={"mapping": {"slug": "slug"}})
      */
     public function indexAction(Trick $trick, $page=1, EntityManagerInterface $em)
     {
@@ -49,8 +49,8 @@ class CommentController extends Controller
         ));
     }
     /**
-     * @Route("/trick/{trick_id}/comments/add", name="comments_add", requirements={"trick" = "\d+"})
-     * @ParamConverter("trick", options={"mapping": {"trick_id": "id"}})
+     * @Route("/trick/{slug}/comments/add", name="comments_add")
+     * @ParamConverter("trick", options={"mapping": {"slug": "slug"}})
      * @Security("has_role('ROLE_USER')")
      */
     public function addAction(Request $request, EntityManagerInterface $em, Trick $trick)
@@ -75,7 +75,7 @@ class CommentController extends Controller
             $comment->setTrick($trick);
             $form = $this->get('form.factory')->create(CommentType::class, $comment);
 
-            return $this->redirectToRoute('trick_view', array('id' => $trick->getId()));
+            return $this->redirectToRoute('trick_view', array('slug' => $trick->getSlug()));
         }
 
 
@@ -83,20 +83,6 @@ class CommentController extends Controller
         return $this->render('Form/commentForm.html.twig', array(
             'form' => $form->createView(),
             'comment' => $comment
-        ));
-    }
-
-    public function listAction($limit, EntityManagerInterface $em)
-    {
-        $listComments = $em->getRepository('AppBundle:Comment')
-            ->findBy(
-                array(),
-                array('dateCrea' => 'desc'),
-                $limit,
-                0
-            );
-        return $this->render('Comment/list.html.twig', array(
-            'listComments' => $listComments
         ));
     }
 }

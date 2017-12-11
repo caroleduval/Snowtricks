@@ -39,6 +39,7 @@ class Video
 
 
     /**
+     *
      * @Assert\Regex(
      *     pattern="#(http|https)://(www.youtube.com|www.dailymotion.com|vimeo.com)/#",
      *     match=true,

@@ -1,4 +1,4 @@
-{{ form_start(form, { action : path('comments_add', {'trick_id': comment.trick.id}) }) }}
+{{ form_start(form, { action : path('comments_add', {'slug': comment.trick.slug}) }) }}
 <div class="row comment">
     <div class="col-xs-1">
         {% if app.user.photo is not null %}

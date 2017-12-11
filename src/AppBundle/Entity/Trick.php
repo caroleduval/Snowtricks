@@ -29,6 +29,8 @@ class Trick
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     *
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -42,7 +44,8 @@ class Trick
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @Assert\NotBlank()
+     *
+     * @Assert\NotBlank(message="Veuillez décrire (même brièvement) le trick SVP.")
      */
     private $description;
 
@@ -53,12 +56,18 @@ class Trick
     private $category;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Photo", mappedBy="trick", cascade={"persist","remove"})
+     *
+     * @Assert\Valid()
      */
     private $photos;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist","remove"})
+     *
+     * @Assert\Valid()
      */
     private $videos;
 
