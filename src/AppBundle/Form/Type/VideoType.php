@@ -16,9 +16,13 @@ class VideoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('url', UrlType::class, array(
-        ));
+            'label'=> false,
+            'attr' => array(
+                'placeholder' => 'Video TouTube, DailyMotion ou Viméo (lien Url ou balise Iframe accepté).')
+        ))
+        ;
     }
-    
+
     /**
      * {@inheritdoc}
      */

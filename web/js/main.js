@@ -49,7 +49,7 @@ $(document).ready(function() {
     // La fonction qui ajoute un lien de suppression d'une photo
     function addDeleteLink($prototype) {
         // Création du lien
-        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+        var $deleteLink = $('<a href="#" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></a>');
 
         // Ajout du lien
         $prototype.append($deleteLink);
@@ -113,7 +113,7 @@ $(document).ready(function() {
     // La fonction qui ajoute un lien de suppression d'une catégorie
     function addDeleteLink($prototype) {
         // Création du lien
-        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+        var $deleteLink = $('<a href="#" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></a>');
 
         // Ajout du lien
         $prototype.append($deleteLink);

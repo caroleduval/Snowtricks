@@ -321,6 +321,13 @@ i.fa:hover {
 .btn:hover{
 	background: #34495E;
 }
+.btn i{
+	color:#fff;
+}
+.form-group .btn{
+	padding : 12px 20px;
+	margin-left: 30px;
+}
 /*---start-gallery -----*/
 .container {
 	position: relative;
