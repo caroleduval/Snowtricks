@@ -5,6 +5,7 @@ namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class RegistrationType extends AbstractType
 {
@@ -14,6 +15,7 @@ class RegistrationType extends AbstractType
                 ->add('photo', PhotoType::class, array(
                             'required' => false,
                     ))
+            ->add('save',      SubmitType::class);
         ;
     }
 
