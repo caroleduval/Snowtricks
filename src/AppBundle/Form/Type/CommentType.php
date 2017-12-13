@@ -1,22 +1,23 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\Photo;
+use AppBundle\Entity\Comment;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class PhotoType extends AbstractType
+class CommentType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('file', FileType::class, array(
-                'label'=> false
-            ))
-        ;
+        $builder->add('content', TextareaType::class, array(
+            'label' => 'false',
+        ));
     }
 
     /**
@@ -25,7 +26,7 @@ class PhotoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Photo::class
+            'data_class' => Comment::class
         ));
     }
 
@@ -34,7 +35,7 @@ class PhotoType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_photo';
+        return 'appbundle_comment';
     }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Trick;
 use Symfony\Component\Form\AbstractType;
@@ -19,27 +19,29 @@ class TrickType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name',TextType::class)
-                ->add('description',TextareaType::class)
-                ->add('category',EntityType::class, array(
-                    'class' => 'AppBundle:Category',
-                    'choice_label' => 'name',
-                    'multiple' => false,
-                    'expanded' => false
-                ))
-                ->add('photos', CollectionType::class, array(
-                    'entry_type' => PhotoType::class,
-                    'allow_add'    => true,
-                    'allow_delete' => true,
-                    'required' => false,
-                    'label'        => false,
-                ))
-                ->add('videos', CollectionType::class, array(
-                    'required' => false,
-                    'entry_type' => VideoType::class,
-                    'allow_add'    => true,
-                    'allow_delete' => true,
-                    'label'        => false,
-                ))
+            ->add('description',TextareaType::class)
+            ->add('category',EntityType::class, array(
+                'class' => 'AppBundle:Category',
+                'choice_label' => 'name',
+                'multiple' => false,
+                'expanded' => false,
+            ))
+            ->add('photos', CollectionType::class, array(
+                'entry_type' => PhotoType::class,
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'required' => false,
+                'label'        => false,
+            ))
+            ->add('videos', CollectionType::class, array(
+                'required' => false,
+                'entry_type' => VideoType::class,
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label'        => false,
+            ))
         ;
     }
     

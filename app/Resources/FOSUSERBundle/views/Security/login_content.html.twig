@@ -18,8 +18,8 @@
 
                 {#First Name#}
                 <div class="form-group">
-                    <label for="username">{{ 'security.login.username'|trans }}</label>
-                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                    <label for="username">{{ 'Email'|trans }}</label>
+                    <input class="form-control" type="text" id="username" name="_username" required="required" />
                 </div>
                 {#Password#}
                 <div class="form-group">
@@ -28,18 +28,22 @@
                 </div>
                 {#Remember Me#}
                 <div class="form-group text-center">
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <input type="checkbox" id="remember_me" name="_remember_me" checked />
                     <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                 </div>
+                {#Validation#}
                 <div class="form-group text-center">
                     <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
                 </div>
+                {#Mot de passe oublié#}
                 <div class="text-center" style="margin-bottom: 10px">
                     <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
                 </div>
+                {#S'inscrire#}
                 <div class="text-center">
                     <a href="{{ path('fos_user_registration_register') }}">Je m'inscris maintenant</a>
                 </div>
             </form>
         </div>
     </div>
+</div>

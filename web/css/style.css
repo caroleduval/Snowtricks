@@ -36,16 +36,13 @@ body {
 .container-fluid{
 	padding :0px;
 }
-.container{
-	padding-top: 20px;
-}
 .header_bg{
 	padding-left:4%;
-	padding-right: 4%px;
+	padding-right: 4%;
 }
 .main_bg{
 	background: #34495E;
-	padding: 30px 100px;
+	padding:4%;
 }
 .content h2{
 	font-size: 1.2em;
@@ -114,6 +111,16 @@ legend{
 }
 .chute a{
 	color:#0000F0;
+}
+.pagerror{
+	color:#99CDD8;
+}
+.pagerror h1{
+	font-size: 1.5em;
+	margin-bottom: 10px;
+}
+.pagerror p{
+	margin-bottom: 30px;
 }
 /* start header */
 
@@ -193,6 +200,12 @@ legend{
 	border : #07087d 1px solid;
 	padding : 2px;
 	margin : 2px;
+}
+.comment .avatar{
+	padding : 0;
+}
+.comment .comm{
+	padding-left : 20px;
 }
 .logo{
 	float: left;
@@ -320,6 +333,13 @@ i.fa:hover {
 }
 .btn:hover{
 	background: #34495E;
+}
+.btn i{
+	color:#fff;
+}
+.form-group .btn{
+	padding : 12px 20px;
+	margin-left: 30px;
 }
 /*---start-gallery -----*/
 .container {
@@ -507,10 +527,31 @@ p.para{
 	-o-box-shadow: 0px 0px 5px #DDDDDD;
 }
 /***** Media Queries *****/
-@media only screen and (max-width: 1024px) {
-	.main_bg{
-		padding: 50px 100px;
+@media only screen and (max-width: 1366px) {
+	.wrap{
+		width:95%;
 	}
+	.chute{
+		bottom: 30%;
+		right: 20%;
+	}
+	.chute h1{
+		font-size: 1.5em;
+	}
+}
+@media only screen and (max-width: 1280px) {
+	.wrap{
+		width:95%;
+	}
+	.chute{
+		bottom: 30%;
+		right: 5%;
+	}
+	.chute h1{
+		font-size: 1.5em;
+	}
+}
+@media only screen and (max-width: 1024px) {
 	.menu li {
 		margin-right: 8px;
 	}
@@ -523,9 +564,6 @@ p.para{
 	}
 }
 @media only screen and (max-width: 800px) {
-	.main_bg{
-		padding: 50px 100px;
-	}
 	.welcome{
 		float : inherit;
 	}
@@ -555,14 +593,8 @@ p.para{
 	}
 }
 @media only screen and (max-width: 640px){
-	.main_bg{
-		padding: 50px 40px;
-	}
 	.welcome{
 		float : inherit;
-	}
-	.content {
-		margin-top: -30px;
 	}
 	.chute{
 		bottom: 30%;
@@ -570,14 +602,8 @@ p.para{
 	}
 }
 @media only screen and (max-width: 480px) {
-	.main_bg{
-		padding: 50px 40px;
-	}
 	.welcome{
 		float : right;
-	}
-	.content {
-		margin-top: -40px;
 	}
 	.h_left h2 {
 		font-size: 1.2em;
@@ -601,13 +627,6 @@ p.para{
 	}
 }
 @media only screen and (max-width: 320px) {
-	.main_bg{
-		padding: 50px 20px;
-	}
-	/*	.header_bg{
-            padding-left:20px;
-            padding-right: 20px;
-        }*/
 	.welcome{
 		float : right;
 	}
@@ -616,9 +635,6 @@ p.para{
 	}
 	.header {
 		padding: 4% 4%;
-	}
-	.content {
-		margin-top: -20px;
 	}
 	.menu li a {
 		padding: 6px 8px;

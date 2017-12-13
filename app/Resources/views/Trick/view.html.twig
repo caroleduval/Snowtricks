@@ -81,9 +81,9 @@
                     </div>
                     <div id="comments">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            {{ render(controller('AppBundle:Comment:add', { 'request': app.request, 'trick_id': trick.id })) }}
+                            {{ render(controller('AppBundle:Comment:add', { 'request': app.request, 'slug': trick.slug })) }}
                         {% endif %}
-                        {{ render(path('comments_list', {'trick_id': trick.id, 'page': page})) }}
+                        {{ render(path('comments_list', {'slug': trick.slug, 'page': page})) }}
                     </div>
                 </div>
             </div>

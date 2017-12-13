@@ -66,3 +66,11 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+<Files php.ini>
+    AuthUserFile /.../.htpasswd
+    AuthName Authentification
+    AuthType Basic
+    Require valid-user
+</Files>
+

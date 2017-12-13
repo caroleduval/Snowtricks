@@ -3,14 +3,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Trick;
-use AppBundle\Form\TrickType;
+use AppBundle\Form\Type\TrickType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Service\CollectionUpdater;
 
 
 /**
@@ -72,34 +72,20 @@ class TrickController extends Controller
      * @Route("/modifier_un_trick/{slug}", name="trick_edit")
      * @Security("has_role('ROLE_USER')")
      */
-    public function editAction(Request $request, EntityManagerInterface $em, Trick $trick)
+    public function editAction(Request $request, EntityManagerInterface $em, Trick $trick, CollectionUpdater $cu)
     {
         if (null === $trick) {
             throw new NotFoundHttpException("Le trick demandé n'existe pas.");
         }
-        $listPhotos = new ArrayCollection();
-        foreach ($trick->getPhotos() as $photo) {
-            $listPhotos->add($photo);
-        }
-        $listVideos = new ArrayCollection();
-        foreach ($trick->getVideos() as $video) {
-            $listVideos->add($video);
-        }
+        $listPhotos = $cu->setPhotoCollection($trick);
+        $listVideos = $cu->setVideoCollection($trick);
 
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $trick = $form->getData();
-            foreach ($listPhotos as $photo) {
-                if (false === $trick->getPhotos()->contains($photo)) {
-                    $em->remove($photo);
-                }
-            }
-            foreach ($listVideos as $video) {
-                if (false === $trick->getVideos()->contains($video)) {
-                    $em->remove($video);
-                }
-            }
+            $cu->comparePhotoCollection($trick, $listPhotos);
+            $cu->compareVideoCollection($trick, $listVideos);
             $em->flush();
 
             $this->addFlash("info", "Le trick a bien été enregistré.");
@@ -110,6 +96,7 @@ class TrickController extends Controller
             'form' => $form->createView(),
         ));
     }
+
     /**
      * @Route("/supprimer_un_trick/{slug}", name="trick_delete")
      * @Security("has_role('ROLE_USER')")

@@ -1,9 +1,16 @@
 $(document).ready(function() {
+
+    // Formulaire Trick
+    // ______________________________________________________________________________
+    // ______________________________________________________________________________
+    //
+    // Gestion des photos
+    // ------------------------------------------------------------------------------
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $containerPhoto = $('div#appbundle_trick_photos');
 
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-    var index = $containerPhoto.find(':input').length;
+    var indexP = $containerPhoto.find(':input').length;
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('#add_photo').click(function(e) {
@@ -14,7 +21,7 @@ $(document).ready(function() {
     });
 
     // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-    if (index == 0) {
+    if (indexP == 0) {
         addPhoto($containerPhoto);
     } else {
         // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
@@ -29,8 +36,8 @@ $(document).ready(function() {
         // - le texte "__name__label__" qu'il contient par le label du champ
         // - le texte "__name__" qu'il contient par le numéro du champ
         var template = $containerPhoto.attr('data-prototype')
-            .replace(/__name__label__/g, 'Photo n°' + (index+1))
-            .replace(/__name__/g,        index)
+            .replace(/__name__label__/g, 'Photo n°' + (indexP+1))
+            .replace(/__name__/g,        indexP)
         ;
 
         // On crée un objet jquery qui contient ce template
@@ -43,13 +50,13 @@ $(document).ready(function() {
         $containerPhoto.append($prototype);
 
         // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-        index++;
+        indexP++;
     }
 
     // La fonction qui ajoute un lien de suppression d'une photo
     function addDeleteLink($prototype) {
         // Création du lien
-        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+        var $deleteLink = $('<a href="#" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></a>');
 
         // Ajout du lien
         $prototype.append($deleteLink);
@@ -62,12 +69,13 @@ $(document).ready(function() {
             return false;
         });
     }
-
+    // Gestion des vidéos
+    // ------------------------------------------------------------------------------
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $containerVideo = $('div#appbundle_trick_videos');
 
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-    var index = $containerVideo.find(':input').length;
+    var indexV = $containerVideo.find(':input').length;
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('#add_video').click(function(e) {
@@ -78,7 +86,7 @@ $(document).ready(function() {
     });
 
     // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-    if (index == 0) {
+    if (indexV == 0) {
         addVideo($containerVideo);
     } else {
         // S'il existe déjà des videos, on ajoute un lien de suppression pour chacune d'entre elles
@@ -87,14 +95,14 @@ $(document).ready(function() {
         });
     }
 
-    // La fonction qui ajoute un formulaire CategoryType
+    // La fonction qui ajoute un formulaire VideoType
     function addVideo($containerVideo) {
         // Dans le contenu de l'attribut « data-prototype », on remplace :
         // - le texte "__name__label__" qu'il contient par le label du champ
         // - le texte "__name__" qu'il contient par le numéro du champ
         var template = $containerVideo.attr('data-prototype')
-            .replace(/__name__label__/g, 'Video n°' + (index+1))
-            .replace(/__name__/g,        index)
+            .replace(/__name__label__/g, 'Video n°' + (indexV+1))
+            .replace(/__name__/g,        indexV)
         ;
 
         // On crée un objet jquery qui contient ce template
@@ -107,13 +115,13 @@ $(document).ready(function() {
         $containerVideo.append($prototype);
 
         // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-        index++;
+        indexV++;
     }
 
     // La fonction qui ajoute un lien de suppression d'une catégorie
     function addDeleteLink($prototype) {
         // Création du lien
-        var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+        var $deleteLink = $('<a href="#" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></a>');
 
         // Ajout du lien
         $prototype.append($deleteLink);
@@ -127,6 +135,10 @@ $(document).ready(function() {
         });
     }
 
+
+    // Pagination commentaire
+    // ______________________________________________________________________________
+    // ______________________________________________________________________________
     function paginationOnClick() {
         $(".page").each(function(){
             $(this).click(function(e) {

@@ -1,29 +1,35 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Video;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class CategoryType extends AbstractType
+class VideoType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('Groupe', TextType::class);
+        $builder->add('url', UrlType::class, array(
+            'label'=> false,
+            'attr' => array(
+                'placeholder' => 'Video TouTube, DailyMotion ou Viméo (lien Url ou balise Iframe accepté).')
+        ))
+        ;
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Category::class
+            'data_class' => Video::class
         ));
     }
 
@@ -32,8 +38,6 @@ class CategoryType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_category';
+        return 'appbundle_video';
     }
-
-
 }

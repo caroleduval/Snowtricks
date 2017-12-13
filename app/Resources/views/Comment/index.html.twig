@@ -1,15 +1,15 @@
 {% for comment in listComments %}
     <div class="row comment">
-        <div class="col-xs-2 col-md-1">
+        <div class="avatar col-xs-2 col-sm-1">
             {% if comment.author.photo is not null %}
-                <img src="{{ asset(comment.author.photo.webPath) }}" alt="{{ comment.author.username }}" />
+                <img src="{{ asset(comment.author.photo.webPath) }}" alt="{{ comment.author.firstName }}" />
             {% else %}
                 <img src="{{ asset('images/picto.png') }}"  alt="Pas encore de photo" title="Pas encore de photo" />
             {% endif %}
         </div>
-        <div class="col-xs-10">
+        <div class="comm col-xs-10">
             Le {{ comment.dateCrea|date("d-m-Y à H:i:s") }},
-            {{ comment.author.username }} {{ comment.author.name }} a dit :
+            {{ comment.author.firstName }} {{ comment.author.name }} a dit :
             <p>{{ comment.content|nl2br }}</p>
         </div>
     </div>

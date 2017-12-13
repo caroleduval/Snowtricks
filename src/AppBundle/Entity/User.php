@@ -25,8 +25,18 @@ class User extends BaseUser
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     *
+     * @Assert\NotBlank()
      */
     private $name;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=255)
+     *
+     * @Assert\NotBlank()
+     */
+    private $firstName;
 
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Photo", cascade={"persist", "remove"})
@@ -62,6 +72,29 @@ class User extends BaseUser
     {
         return $this->name;
     }
+    /**
+     * Set name
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setfirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
 
     /**
      * Set photo
@@ -70,7 +103,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setPhoto(\appBundle\Entity\Photo $photo = null)
+    public function setPhoto(\appBundle\Entity\Photo $photo)
     {
         $this->photo = $photo;
 
@@ -85,5 +118,12 @@ class User extends BaseUser
     public function getPhoto()
     {
         return $this->photo;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+        $this->setUsername($email);
+        return $this;
     }
 }
