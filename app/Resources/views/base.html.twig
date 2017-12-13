@@ -21,7 +21,7 @@
     <div class="header_bg">
         <div class="header">
             <div class="row">
-                <div class="pull-right col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="pull-right col-xs-6 col-sm-3 col-md-3 col-lg-2">
                     <ul class="menu">
                         <li><a href="{{ path('homepage') }}"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
                         </li>
@@ -41,7 +41,7 @@
                 <div class="clear"></div>
                 <div class="pull-right text-center welcome h4 col-xs-6 col-sm-4 col-md-3 col-lg-2">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        Hello {{ app.user.username|upper }}
+                        Hello {{ app.user.firstName|upper }}
                     {% endif %}
                 </div>
             </div>

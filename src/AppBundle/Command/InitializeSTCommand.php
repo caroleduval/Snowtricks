@@ -54,7 +54,7 @@ class InitializeSTCommand extends ContainerAwareCommand
         $loaddataInput = new ArrayInput(['command' => 'app:import-fixtures-data']);
         $loaddataCmd->run($loaddataInput, $output);
         $output->writeln([
-            "Datas have been charged in the application."
+            "Trick Datas have been charged in the application."
         ]);
 
         # Charger les données User
@@ -62,7 +62,7 @@ class InitializeSTCommand extends ContainerAwareCommand
         $loaduserInput = new ArrayInput(['command' => 'app:import-fixtures-user']);
         $loaduserCmd->run($loaduserInput, $output);
         $output->writeln([
-            "Datas have been charged in the application."
+            "User Datas have been charged in the application."
         ]);
 
 

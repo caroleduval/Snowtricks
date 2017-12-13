@@ -1,4 +1,11 @@
 $(document).ready(function() {
+
+    // Formulaire Trick
+    // ______________________________________________________________________________
+    // ______________________________________________________________________________
+    //
+    // Gestion des photos
+    // ------------------------------------------------------------------------------
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $containerPhoto = $('div#appbundle_trick_photos');
 
@@ -62,7 +69,8 @@ $(document).ready(function() {
             return false;
         });
     }
-
+    // Gestion des vidéos
+    // ------------------------------------------------------------------------------
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $containerVideo = $('div#appbundle_trick_videos');
 
@@ -87,7 +95,7 @@ $(document).ready(function() {
         });
     }
 
-    // La fonction qui ajoute un formulaire CategoryType
+    // La fonction qui ajoute un formulaire VideoType
     function addVideo($containerVideo) {
         // Dans le contenu de l'attribut « data-prototype », on remplace :
         // - le texte "__name__label__" qu'il contient par le label du champ
@@ -127,6 +135,10 @@ $(document).ready(function() {
         });
     }
 
+
+    // Pagination commentaire
+    // ______________________________________________________________________________
+    // ______________________________________________________________________________
     function paginationOnClick() {
         $(".page").each(function(){
             $(this).click(function(e) {

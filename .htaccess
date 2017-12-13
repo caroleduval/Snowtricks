@@ -1,0 +1,6 @@
+<Files php.ini>
+    AuthUserFile /.../.htpasswd
+    AuthName Authentification
+    AuthType Basic
+    Require valid-user
+</Files>

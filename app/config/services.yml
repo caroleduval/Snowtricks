@@ -39,36 +39,43 @@ services:
             - { name: 'twig.extension' }
 
     app.form.registration:
-            class: AppBundle\Form\Type\RegistrationType
-            tags:
-                - { name: form.type, alias: app_user_registration }
+        class: AppBundle\Form\Type\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
 
     app.form.profile:
-            class: AppBundle\Form\Type\ProfileType
-            tags:
-                - { name: form.type, alias: fos_user_profile }
+        class: AppBundle\Form\Type\ProfileType
+        tags:
+            - { name: form.type, alias: fos_user_profile }
 
+# Création d'une vidéo
+# Analyse du lien vidéo avant enregistrement en base de données
     app.service.iframe_builder:
         class: AppBundle\Service\IframeBuilder
 
+    # Ecoute de l'évênement
     app.doctrine_listener.video_creation:
         class: AppBundle\DoctrineListener\VideoCreationListener
         arguments:
-          - "@app.service.iframe_builder"
+            - "@app.service.iframe_builder"
         tags:
-          - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: prePersist }
 
+# Création d'un user
+# Création du username avant enregistrement en base de données
+# Envoi d'un email de confirmation après enregistrement en base de données
     app.service.user_mailer:
-          class: AppBundle\Service\UserMailer
-          arguments:
-              - "@mailer"
+        class: AppBundle\Service\UserMailer
+        arguments:
+            - "@mailer"
 
+    # Ecoute de l'évênement
     app.doctrine_listener.user_creation:
         class: AppBundle\DoctrineListener\UserCreationListener
         arguments:
-          - "@app.service.user_mailer"
+            - "@app.service.user_mailer"
         tags:
-          - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postPersist }
 
     app.service.file_uploader:
         class: AppBundle\Service\FileUploader

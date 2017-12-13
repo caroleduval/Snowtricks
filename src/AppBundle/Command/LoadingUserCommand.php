@@ -15,7 +15,7 @@ class LoadingUserCommand extends ContainerAwareCommand
     {
         $this
             ->setName('app:import-fixtures-user')
-            ->setDescription('Imports datas into Category, Trick, Photo and Video tables');
+            ->setDescription('Imports datas into User and Comment tables');
     }
 
     public function getDatas($entity)
@@ -37,7 +37,7 @@ class LoadingUserCommand extends ContainerAwareCommand
         $user = $this->getDatas('User');
         foreach ($user['User'] as $reference => $column) {
             $user = new User();
-            $user->setUsername($column['username']);
+            $user->setfirstName($column['firstname']);
             $user->setName($column['name']);
             $user->setEnabled('true');
             $user->setEmail($column['email']);
