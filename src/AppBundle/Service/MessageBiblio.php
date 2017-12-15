@@ -10,6 +10,7 @@ class MessageBiblio
     {
         $nbPhotos = count($trick->getPhotos());
         $nbVideos = count($trick->getVideos());
+        $nb = $nbPhotos + $nbVideos;
 
         if ($nbPhotos == 0) {
             $messBiblioP = "";
@@ -27,13 +28,17 @@ class MessageBiblio
             $messBiblioV = $nbVideos . " videos";
         }
 
-        if ($nbPhotos == 0 or $nbVideos == 0) {
+        if ($nbPhotos == 0 || $nbVideos == 0) {
             $and = "";
         } else {
             $and = " et ";
         }
 
-        $message = $messBiblioP . $and . $messBiblioV;
+        if ($nb == 0){
+            $message="Pas encore de contenu multimédia pour ce trick.";
+        } else {
+            $message = $messBiblioP . $and . $messBiblioV.".";
+        }
         return $message;
     }
 }
