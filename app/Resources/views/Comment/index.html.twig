@@ -1,3 +1,6 @@
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    {{ render(controller('AppBundle:Comment:add', { 'request': app.request, 'slug': trick.slug })) }}
+{% endif %}
 {% for comment in listComments %}
     <div class="row comment">
         <div class="avatar col-xs-2 col-sm-1">
