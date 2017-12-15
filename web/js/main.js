@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+
+    // Démarrer le carrousel
+    $('#myCarousel').find('.item').first().addClass('active');
+
     // Formulaire Trick
     // ______________________________________________________________________________
     // ______________________________________________________________________________

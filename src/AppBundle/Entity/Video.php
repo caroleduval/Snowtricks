@@ -89,8 +89,6 @@ class Video
         return $this;
     }
 
-
-
     /**
      * Set type
      *

@@ -1,0 +1,8 @@
+Le site SnowTricks est consultable en ligne :
+snowtricks.carole-duval.fr
+
+Le projet est suivi sur Github :
+https://github.com/caroleduval/Snowtricks
+
+Il a été analysé via sensioLab Insight :
+https://insight.sensiolabs.com/projects/5c85f2ce-ec4b-423e-ba7f-b5aec2fae3c7
