@@ -132,7 +132,7 @@ class Photo
     {
         return $this->trick;
     }
-    
+
     public function getWebPath()
     {
         return 'upload/photos/'.$this->getId().'.'.$this->getType();
