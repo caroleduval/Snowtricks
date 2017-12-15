@@ -30,7 +30,7 @@ MySQL   5.6.35
 - Run `composer update` and define your own values when asked.
 
 # Fill the database with tricks and users datas
-- Run : `app:initialize-SN`
+- Run : `php bin/console app:initialize-SN`
 - open [http://localhost/snowtricks/web/app_dev.php]
 
 It's now OK !

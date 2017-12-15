@@ -22,8 +22,8 @@ class LoadingDataCommand extends ContainerAwareCommand
 
     public function getDatas($entity)
     {
-        $fixturesPath = __DIR__ . '/Fixtures/';
-        $fixtures = Yaml::parse(file_get_contents( $fixturesPath.'Fixtures'.$entity.'.yml', true));
+        $fixturesPath = $this->getContainer()->getParameter('fixtures_directory');
+        $fixtures = Yaml::parse(file_get_contents( $fixturesPath.'/Fixtures'.$entity.'.yml', true));
         return $fixtures;
     }
 

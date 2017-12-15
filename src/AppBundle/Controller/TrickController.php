@@ -23,7 +23,7 @@ class TrickController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(EntityManagerInterface $em, Request $request)
+    public function indexAction(EntityManagerInterface $em, Request $request, MessageBiblio $mb)
     {
         $listTricks = $em->getRepository(Trick::class)
             ->findAll();

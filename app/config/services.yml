@@ -80,6 +80,8 @@ services:
 
     app.service.file_uploader:
         class: AppBundle\Service\FileUploader
+        arguments:
+            $photosDir: '%photos_directory%'
 
     app.doctrine_listener.photo_upload:
         class: AppBundle\DoctrineListener\PhotoUploadListener

@@ -132,17 +132,9 @@ class Photo
     {
         return $this->trick;
     }
-
-    public function getUploadDir()
-    {
-        return 'upload/photos';
-    }
-    protected function getUploadRootDir()
-    {
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
-    }
+    
     public function getWebPath()
     {
-        return $this->getUploadDir().'/'.$this->getId().'.'.$this->getType();
+        return 'upload/photos/'.$this->getId().'.'.$this->getType();
     }
 }
