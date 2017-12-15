@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Trick;
 use AppBundle\Form\Type\TrickType;
+use AppBundle\Service\MessageBiblio;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,7 +23,7 @@ class TrickController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(EntityManagerInterface $em, Request $request)
+    public function indexAction(EntityManagerInterface $em, Request $request, MessageBiblio $mb)
     {
         $listTricks = $em->getRepository(Trick::class)
             ->findAll();
@@ -34,11 +35,15 @@ class TrickController extends Controller
     /**
      * @Route("/trick/{slug}/{page}", name="trick_view",requirements={"page":"\d+"})
      */
-    public function viewAction(Trick $trick,$page=1,Request $request)
+    public function viewAction(Trick $trick,$page=1,Request $request, MessageBiblio $mb)
     {
+        $nbitems=count($trick->getPhotos())+ count ($trick->getVideos());
+        $message=$mb->messageCreator($trick);
         return $this->render('Trick/view.html.twig', array(
             'trick' => $trick,
-            'page'=>$page
+            'page'=>$page,
+            'count'=> $nbitems,
+            'message'=>$message
         ));
     }
     /**

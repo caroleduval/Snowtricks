@@ -42,7 +42,7 @@ class IframeBuilder
         }
     }
 
-    private function youtubeId(Video $video)
+    public function youtubeId(Video $video)
     {
         //ex : https://www.youtube.com/watch?v=92rXe1XJMuI
         $tableaux = explode("=", $video->getUrl());

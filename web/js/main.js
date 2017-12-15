@@ -1,5 +1,18 @@
 $(document).ready(function() {
 
+
+    // Démarrer le carrousel
+    $('#myCarousel').find('.item').first().addClass('active');
+
+    // Pagination commentaires
+    var $listItems = $('.pagination li');
+
+    $listItems.click(function(){
+        $listItems.removeClass('active');
+        $(this).addClass('active');
+
+    });
+
     // Formulaire Trick
     // ______________________________________________________________________________
     // ______________________________________________________________________________

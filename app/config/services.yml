@@ -52,6 +52,7 @@ services:
 # Analyse du lien vidéo avant enregistrement en base de données
     app.service.iframe_builder:
         class: AppBundle\Service\IframeBuilder
+        public: true
 
     # Ecoute de l'évênement
     app.doctrine_listener.video_creation:
@@ -79,6 +80,8 @@ services:
 
     app.service.file_uploader:
         class: AppBundle\Service\FileUploader
+        arguments:
+            $photosDir: '%photos_directory%'
 
     app.doctrine_listener.photo_upload:
         class: AppBundle\DoctrineListener\PhotoUploadListener
@@ -97,3 +100,5 @@ services:
         arguments:
             - "@doctrine.orm.entity_manager"
 
+    app.service.message_biblio:
+        class: AppBundle\Service\messageCreator
