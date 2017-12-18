@@ -161,7 +161,7 @@ class Video
         return $this->trick;
     }
 
-    private  function url()
+    public function url()
     {
         $control = $this->getType();  // on récupère le type de la vidéo
         $id = strip_tags($this->getIdentif()); // on récupère son identifiant

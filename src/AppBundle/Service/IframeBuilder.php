@@ -12,30 +12,30 @@ class IframeBuilder
 
         if (preg_match("#iframe#", $url))
         {
-            if (preg_match("#//www.youtube.com/#", $url))
+            if (preg_match("#youtube#", $url))
             {
                 $this->youtubeIframe($video);
             }
-            else if((preg_match("#//www.dailymotion.com/#", $url)))
+            else if((preg_match("#dailymotion#", $url)))
             {
                 $this->dailymotionIframe($video);
             }
-            else if((preg_match("#//vimeo.com/#", $url)))
+            else if((preg_match("#vimeo#", $url)))
             {
                 $this->vimeoIframe($video);
             }
         }
         else
         {
-            if (preg_match("#//www.youtube.com/#", $url))
+            if (preg_match("#youtube.com#", $url))
             {
                 $this->youtubeId($video);
             }
-            else if((preg_match("#//www.dailymotion.com/#", $url)))
+            else if((preg_match("#dailymotion.com#", $url)))
             {
                 $this->dailymotionId($video);
             }
-            else if((preg_match("#//vimeo.com/#", $url)))
+            else if((preg_match("#vimeo.com#", $url)))
             {
                 $this->vimeoId($video);
             }

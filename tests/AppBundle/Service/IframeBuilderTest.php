@@ -3,11 +3,9 @@
 namespace Tests\AppBundle\Service;
 
 use AppBundle\Entity\Video;
-use AppBundle\Service\IframeBuilder;
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class TestIframeBuilder extends KernelTestCase
+class IframeBuilderTest extends KernelTestCase
 {
     protected $builder;
 
@@ -24,10 +22,9 @@ class TestIframeBuilder extends KernelTestCase
     {
         $video = new Video();
         $video->setUrl($url);
-        $analyser=$this->builder->youtubeId($video);
+        $this->builder->analyseUrl($video);
 
-        $this->assertSame($embed, $analyser->url())
-        ;
+        $this->assertSame($embed, $video->url());
     }
 
     public function embedForUrl()

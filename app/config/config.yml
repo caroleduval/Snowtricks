@@ -9,6 +9,17 @@ parameters:
     locale: fr
     photos_directory: '%kernel.project_dir%/web/upload/photos'
     fixtures_directory: '%kernel.project_dir%/src/AppBundle/Command/Fixtures'
+    fos_user.template.engine: 'twig'
+    # Permet de définir quel service de mail utiliser
+    # On utilise twig_swift pour pouvoir envoyer un email en HTML
+    service:
+        mailer: fos_user.mailer.twig_swift
+        confirmation:
+            from_email:
+                address: "%mailer_user%"
+                sender_name: "Carole"
+            enabled:    true
+            template:   FOSUserBundle:Registration:email.txt.twig
 
 framework:
     #esi: ~
@@ -96,19 +107,4 @@ fos_user:
         form:
             type: AppBundle\Form\Type\ProfileType
 
-parameters:
-    fos_user.template.engine: 'twig'
-    # Permet de définir quel service de mail utiliser
-    # On utilise twig_swift pour pouvoir envoyer un email en HTML
-    service:
-        mailer: fos_user.mailer.twig_swift
-        confirmation:
-            from_email:
-                address: "%mailer_user%"
-                sender_name: "Carole"
-            enabled:    true
-            template:   FOSUserBundle:Registration:email.txt.twig
 
-twig:
-    form_themes:
-        - 'bootstrap_3_layout.html.twig'

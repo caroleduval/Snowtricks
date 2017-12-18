@@ -4,7 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Trick;
 
-class MessageBiblio
+class BiblioMessager
 {
     public function messageCreator(Trick $trick)
     {
@@ -17,15 +17,15 @@ class MessageBiblio
         } elseif ($nbPhotos == 1) {
             $messBiblioP = "1 photo";
         } else {
-            $messBiblioP = $nbPhotos . " photos";
+            $messBiblioP = $nbPhotos." photos";
         }
 
         if ($nbVideos == 0) {
             $messBiblioV = "";
         } elseif ($nbVideos == 1) {
-            $messBiblioV = "1 video";
+            $messBiblioV = "1 vidéo";
         } else {
-            $messBiblioV = $nbVideos . " videos";
+            $messBiblioV = $nbVideos." vidéos";
         }
 
         if ($nbPhotos == 0 || $nbVideos == 0) {
@@ -37,7 +37,7 @@ class MessageBiblio
         if ($nb == 0){
             $message="Pas encore de contenu multimédia pour ce trick.";
         } else {
-            $message = $messBiblioP . $and . $messBiblioV.".";
+            $message = "Ce trick est illustré par ".$messBiblioP.$and.$messBiblioV.".";
         }
         return $message;
     }
