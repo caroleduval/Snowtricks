@@ -3,6 +3,7 @@
 namespace Tests\AppBundle\Service;
 
 use AppBundle\Entity\Video;
+use AppBundle\Service\IframeBuilder;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class IframeBuilderTest extends KernelTestCase
@@ -11,8 +12,7 @@ class IframeBuilderTest extends KernelTestCase
 
     public function setUp()
     {
-        self::bootKernel();
-        $this->builder = static::$kernel->getContainer()->get('app.service.iframe_builder');
+        $this->builder = new IframeBuilder();
     }
 
     /**

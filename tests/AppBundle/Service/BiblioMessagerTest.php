@@ -5,6 +5,7 @@ namespace Tests\AppBundle\Service;
 use AppBundle\Entity\Photo;
 use AppBundle\Entity\Video;
 use AppBundle\Entity\Trick;
+use AppBundle\Service\BiblioMessager;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class BiblioMessagerTest extends KernelTestCase
@@ -13,8 +14,7 @@ class BiblioMessagerTest extends KernelTestCase
 
     public function setUp()
     {
-        self::bootKernel();
-        $this->bm = static::$kernel->getContainer()->get('app.service.biblio_messager');
+        $this->bm = new BiblioMessager();
     }
 
     public function testMessageBiblio00()

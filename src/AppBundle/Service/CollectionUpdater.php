@@ -12,7 +12,7 @@ class CollectionUpdater
      * @var EntityManagerInterface
      */
     private $em;
-    // On injecte l'EntityManager
+
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
@@ -33,16 +33,14 @@ class CollectionUpdater
         }
         return $listVideos;
     }
-    public function comparePhotoCollection(Trick $trick, ArrayCollection $listPhotos)
+    public function compareCollections(Trick $trick, $listPhotos, $listVideos)
     {
         foreach ($listPhotos as $photo) {
             if (false === $trick->getPhotos()->contains($photo)) {
                 $this->em->remove($photo);
             }
         }
-    }
-    public function compareVideoCollection(Trick $trick, ArrayCollection $listVideos)
-    {
+
         foreach ($listVideos as $video) {
             if (false === $trick->getVideos()->contains($video)) {
                 $this->em->remove($video);

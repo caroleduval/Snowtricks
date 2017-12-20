@@ -18,7 +18,7 @@ class VideoType extends AbstractType
         $builder->add('url', UrlType::class, array(
             'label'=> false,
             'attr' => array(
-                'placeholder' => 'Video TouTube, DailyMotion ou Viméo (lien Url ou balise Iframe accepté).')
+                'placeholder' => 'Video YouTube, DailyMotion ou Viméo (lien Url ou balise Iframe accepté).')
         ))
         ;
     }

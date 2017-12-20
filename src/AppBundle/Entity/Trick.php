@@ -227,7 +227,7 @@ class Trick
     /**
      * Get photos
      *
-     * @return array
+     * @return ArrayCollection
      */
     public function getPhotos()
     {
@@ -251,7 +251,7 @@ class Trick
     /**
      * Get videos
      *
-     * @return array
+     * @return ArrayCollection
      */
     public function getVideos()
     {

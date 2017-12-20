@@ -82,15 +82,15 @@ class TrickController extends Controller
         if (null === $trick) {
             throw new NotFoundHttpException("Le trick demandé n'existe pas.");
         }
-        $listPhotos = $cu->setPhotoCollection($trick);
-        $listVideos = $cu->setVideoCollection($trick);
+
+        $listPhotos = clone $trick->getPhotos();
+        $listVideos = clone $trick->getVideos();
 
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $trick = $form->getData();
-            $cu->comparePhotoCollection($trick, $listPhotos);
-            $cu->compareVideoCollection($trick, $listVideos);
+            $cu->compareCollections($trick, $listPhotos,$listVideos );
             $em->flush();
 
             $this->addFlash("info", "Le trick a bien été enregistré.");
