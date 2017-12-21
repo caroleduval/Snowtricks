@@ -23,22 +23,6 @@ class CollectionUpdaterTest extends TestCase
         parent::setUp();
     }
 
-    // this test applies to SetVideoCollection too as the method is working the same way
-    public function testSetPhotoCollection()
-    {
-        $cu= new CollectionUpdater($this->em);
-
-        $trick = new Trick();
-        $photo1 = new Photo();
-        $trick->addPhoto($photo1);
-        $photo2 = new Photo();
-        $trick->addPhoto($photo2);
-        $photo3 = new Photo();
-        $trick->addPhoto($photo3);
-
-        $this->assertEquals($trick->getPhotos(), $cu->setPhotoCollection($trick));
-    }
-
     public function testCompareCollections()
     {
         $this->em->expects ($this->exactly(3))->method('remove');

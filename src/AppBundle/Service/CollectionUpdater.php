@@ -17,22 +17,7 @@ class CollectionUpdater
     {
         $this->em = $em;
     }
-    public function setPhotoCollection(Trick $trick)
-    {
-        $listPhotos = new ArrayCollection();
-        foreach ($trick->getPhotos() as $photo) {
-            $listPhotos->add($photo);
-        }
-        return $listPhotos;
-    }
-    public function setVideoCollection(Trick $trick)
-    {
-        $listVideos = new ArrayCollection();
-        foreach ($trick->getVideos() as $video) {
-            $listVideos->add($video);
-        }
-        return $listVideos;
-    }
+
     public function compareCollections(Trick $trick, $listPhotos, $listVideos)
     {
         foreach ($listPhotos as $photo) {

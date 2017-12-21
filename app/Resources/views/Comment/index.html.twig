@@ -11,7 +11,7 @@
             {% endif %}
         </div>
         <div class="comm col-xs-10">
-            Le {{ comment.dateCrea|date("d-m-Y à H:i:s") }},
+            Le {{ comment.dateCrea|date("d-m-Y à H:i") }},
             {{ comment.author.firstName }} {{ comment.author.name }} a dit :
             <p>{{ comment.content|nl2br }}</p>
         </div>

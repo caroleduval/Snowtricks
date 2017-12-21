@@ -85,7 +85,7 @@
                             {{ form_widget(form.photos) }}
                         </div>
                         <div class="col-md-9 col-md-offset-3">
-                            <a href="#" id="add_photo" class="btn btn-default">Ajouter une photo</a>
+                            <a href="#" id="add_photo" class="btn btn-default decale">Ajouter une photo</a>
                         </div>
                     </div>
 
@@ -96,11 +96,11 @@
                             {{ form_widget(form.videos) }}
                         </div>
                         <div class="col-md-9 col-md-offset-3">
-                            <a href="#" id="add_video" class="btn btn-default">Ajouter une video</a>
+                            <a href="#" id="add_video" class="btn btn-default decale">Ajouter une video</a>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3 text-center">
+                        <div class="text-center">
                             {% if trick is defined %}
                                 <a href="{{ path('trick_view', {'slug': trick.slug} ) }}" class="btn btn-default">Annuler</a>
                             {% endif %}

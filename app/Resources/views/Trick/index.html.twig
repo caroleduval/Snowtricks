@@ -23,6 +23,7 @@
     <div class="row">
         {{ include("Trick/portfolio.html.twig") }}
     </div>
+    <div class="row">
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <p class=" pull-right">
             <a class="btn btn-primary btn-lg" href="{{ path('trick_add') }}">J'ajoute un trick</a>

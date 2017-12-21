@@ -207,6 +207,10 @@ legend{
 .comment .comm{
 	padding-left : 20px;
 }
+.comm p{
+	margin-top : 10px;
+	color:#122b40;
+}
 .logo{
 	float: left;
 }
@@ -259,6 +263,10 @@ i.fa {
 	color : #07087d;
 	vertical-align: baseline;
 	padding-top: .4em;
+	padding-left: 2px;
+}
+.footer i.fa {
+	padding-top: 0;
 	padding-left: 2px;
 }
 i.fa:hover {
@@ -317,6 +325,7 @@ i.fa:hover {
 .btn{
 	display: inline-block;
 	padding: 12px 30px;
+	margin-bottom: 5px;
 	font-size: 0.8925em;
 	color: #fff;
 	border : none;
@@ -337,9 +346,14 @@ i.fa:hover {
 .btn i{
 	color:#fff;
 }
-.form-group .btn{
-	padding : 12px 20px;
+.form-group .btn {
+	padding: 12px 20px;
+}
+.decale{
 	margin-left: 30px;
+}
+.form-group .text-center .btn{
+	margin-left: 0px;
 }
 /*---start-gallery -----*/
 .container {
@@ -447,7 +461,6 @@ i.fa:hover {
 }
 .f_icons ul li a{
 	display: block;
-	padding: 10px;
 	width: 24px;
 	height: 24px;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -593,6 +606,9 @@ p.para{
 	}
 }
 @media only screen and (max-width: 640px){
+	.details h3{
+		font-size :1em;
+	}
 	.welcome{
 		float : inherit;
 	}
@@ -602,6 +618,12 @@ p.para{
 	}
 }
 @media only screen and (max-width: 480px) {
+	.details h3{
+		font-size :1em;
+	}
+	.details .para, .comm{
+		font-size :.9em;
+	}
 	.welcome{
 		float : right;
 	}
@@ -627,6 +649,12 @@ p.para{
 	}
 }
 @media only screen and (max-width: 320px) {
+	.details h3{
+		font-size :1em;
+	}
+	.details .para{
+		font-size :.9em;
+	}
 	.welcome{
 		float : right;
 	}
